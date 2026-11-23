@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahmoud Batran — Analytics Engineer / Data Engineer</title>
+<meta name="description" content="Portfolio of Mahmoud Batran, Analytics Engineer / Data Engineer: SAP & D365 pipelines, cloud data models and dashboards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070d1a;--bg2:#0b1324;--panel:#101a30;--panel2:#15213b;--line:#22304f;
+  --text:#e6ecf7;--muted:#8a9bbd;--teal:#2dd4bf;--blue:#60a5fa;--amber:#fbbf24;
+  --red:#f87171;--violet:#a78bfa;--green:#34d399;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(7,13,26,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.brand .mono{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--teal),var(--blue));display:grid;place-items:center;color:#06101f;font-weight:800;font-size:14px}
+nav ul{display:flex;gap:26px;list-style:none;font-size:14px;color:var(--muted)}
+nav ul a:hover{color:var(--text)}
+
+/* hero */
+.hero{padding:96px 0 72px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-200px -100px auto auto;width:620px;height:620px;background:radial-gradient(circle,rgba(45,212,191,.18),transparent 65%);pointer-events:none}
+.hero:after{content:"";position:absolute;left:-200px;bottom:-260px;width:600px;height:600px;background:radial-gradient(circle,rgba(96,165,250,.14),transparent 65%);pointer-events:none}
+.tag{display:inline-flex;gap:8px;align-items:center;font-size:13px;color:var(--teal);border:1px solid rgba(45,212,191,.35);padding:6px 12px;border-radius:999px;background:rgba(45,212,191,.06)}
+.tag i{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.05;margin:22px 0 18px;letter-spacing:-.02em}
+h1 span{background:linear-gradient(90deg,var(--teal),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:19px;color:var(--muted);max-width:640px}
+.btns{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.btn{padding:12px 20px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid var(--line);transition:.2s}
+.btn.primary{background:linear-gradient(135deg,var(--teal),var(--blue));color:#06101f;border:none}
+.btn:hover{transform:translateY(-2px)}
+.hstats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px;max-width:760px}
+.hstats div{border-left:2px solid var(--line);padding-left:14px}
+.hstats b{display:block;font-size:26px}
+.hstats span{font-size:13px;color:var(--muted)}
+
+section{padding:80px 0}
+.eyebrow{color:var(--teal);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+h2{font-size:clamp(28px,4vw,40px);margin:8px 0 14px;letter-spacing:-.01em}
+.sub{color:var(--muted);max-width:680px}
+
+/* about + skills */
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.about p{color:var(--muted);margin-bottom:14px}
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.skill{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.skill h4{font-size:15px;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:12px;padding:4px 9px;border-radius:6px;background:var(--panel2);color:#b9c6e0}
+
+/* project */
+.project{margin-top:56px}
+.phead{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-bottom:22px}
+.phead h3{font-size:26px;margin:6px 0 10px}
+.phead .num{font-size:13px;color:var(--muted);font-weight:600}
+.phead p{color:var(--muted)}
+.pstory{display:grid;gap:10px}
+.pstory div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14px;color:#c3cfe6}
+.pstory b{color:var(--text);display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.pstory .s b{color:var(--teal)}
+
+/* dashboard shell */
+.dash{background:linear-gradient(180deg,#0d1730,#0a1226);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
+.dtop{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dtitle{display:flex;align-items:center;gap:12px}
+.dtitle h4{font-size:17px}
+.dtitle small{display:block;font-size:12px;color:var(--muted);font-weight:400}
+.slicers{display:flex;gap:10px;flex-wrap:wrap}
+.slicers label{font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:3px}
+select{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 10px;font:inherit;font-size:13px;min-width:130px}
+.tabs{display:flex;gap:4px;padding:10px 20px 0;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{background:none;border:none;color:var(--muted);font:inherit;font-size:13px;font-weight:600;padding:10px 14px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+.tabs button.on{color:var(--text);border-color:var(--teal)}
+.page{display:none;padding:20px}
+.page.on{display:block}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:14px}
+.kpis.k4{grid-template-columns:repeat(4,1fr)}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;position:relative;overflow:hidden}
+.kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c,var(--teal))}
+.kpi span{font-size:11.5px;color:var(--muted);display:block}
+.kpi b{font-size:23px;display:block;margin-top:4px;letter-spacing:-.01em}
+.kpi em{font-style:normal;font-size:11.5px;color:var(--muted)}
+.kpi em.up{color:var(--green)} .kpi em.dn{color:var(--red)}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:1fr 1fr} .g21{grid-template-columns:2fr 1fr} .g12{grid-template-columns:1fr 2fr}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.card h5{font-size:13px;font-weight:600;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.card h5 small{font-weight:400;color:var(--muted);font-size:11px}
+.ch{position:relative;height:220px}
+.ch.tall{height:300px}
+.mt{margin-top:14px}
+.tbl{overflow:auto;max-height:340px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{position:sticky;top:0;background:var(--panel2);color:var(--muted);font-weight:600;text-align:right;padding:8px 10px;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+td{padding:7px 10px;border-bottom:1px solid #1b2742;text-align:right;white-space:nowrap}
+tr:hover td{background:#14203a}
+tfoot td{font-weight:700;background:var(--panel2);position:sticky;bottom:0}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:600}
+.pg{background:rgba(52,211,153,.14);color:var(--green)}
+.pa{background:rgba(251,191,36,.14);color:var(--amber)}
+.pr{background:rgba(248,113,113,.14);color:var(--red)}
+.bar{position:relative;height:8px;background:#1b2742;border-radius:4px;min-width:90px}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+.gauge{display:flex;flex-direction:column;align-items:center;justify-content:center;height:220px;position:relative}
+.gauge .val{position:absolute;top:58%;text-align:center}
+.gauge .val b{font-size:34px;display:block}
+.gauge .val span{font-size:12px;color:var(--muted)}
+.notes{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.notes .card p{color:var(--muted);font-size:14px}
+.dfoot{padding:10px 20px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.insights div{background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.22);border-radius:10px;padding:10px 12px;font-size:13px;color:#c3cfe6}
+.insights b{color:var(--teal)}
+
+/* contact */
+.contact{background:linear-gradient(135deg,rgba(45,212,191,.1),rgba(96,165,250,.08));border:1px solid var(--line);border-radius:20px;padding:48px;text-align:center}
+.contact .btns{justify-content:center}
+footer{padding:30px 0;color:var(--muted);font-size:13px;text-align:center;border-top:1px solid var(--line)}
+.disclaimer{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px dashed var(--line);border-radius:10px;padding:10px 14px;margin-top:20px;display:inline-block}
+
+
+.ptabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:34px 0 26px}
+.ptabs button{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-align:left;color:var(--text);font:inherit;font-weight:600;font-size:15px;cursor:pointer;transition:.2s}
+.ptabs button span{display:block;font-size:12px;color:var(--muted);margin-bottom:2px}
+.ptabs button small{display:block;font-size:12px;color:var(--muted);font-weight:500;margin-top:2px}
+.ptabs button:hover{border-color:#34507f}
+.ptabs button.on{background:linear-gradient(135deg,rgba(45,212,191,.14),rgba(96,165,250,.1));border-color:var(--teal)}
+.ptabs button.on span{color:var(--teal)}
+.proj{display:none}.proj.on{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.how{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.how h5{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.flow{list-style:none;counter-reset:f;display:grid;gap:8px;margin-bottom:14px}
+.flow li{counter-increment:f;position:relative;padding:8px 10px 8px 40px;border-radius:10px;background:var(--panel2);font-size:13px}
+.flow li:before{content:counter(f);position:absolute;left:10px;top:9px;width:21px;height:21px;border-radius:50%;background:rgba(45,212,191,.16);color:var(--teal);font-size:11px;font-weight:700;display:grid;place-items:center}
+.flow li b{display:block;font-size:13.5px}
+.flow li span{color:var(--muted);font-size:12.5px}
+.flow li.wip{border:1px dashed rgba(251,191,36,.5);background:rgba(251,191,36,.05)}
+.flow li.wip:before{background:rgba(251,191,36,.18);color:var(--amber)}
+.cmark{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:13px;background:linear-gradient(135deg,#0f766e,#2dd4bf);color:#04121f}
+.cmark.tw{background:linear-gradient(135deg,#1d4ed8,#60a5fa)}
+.demo{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--amber);border:1px solid rgba(251,191,36,.45);border-radius:5px;padding:2px 6px;margin-left:6px;vertical-align:2px}
+th.grp{text-align:center;color:var(--teal);border-bottom:1px solid var(--line)}
+tr.dim td{opacity:.35} td.dim,th.dimh{opacity:.3}
+table.heat td{text-align:right}table.heat td:first-child{text-align:left}
+table.click tbody tr{cursor:pointer} tr.sel td{background:rgba(96,165,250,.16)!important}
+.topn{font-size:11px;color:var(--muted);font-weight:500;display:flex;gap:6px;align-items:center}
+.topn select{min-width:64px;padding:4px 6px}
+.mkg{display:grid;grid-template-columns:200px 1fr;gap:10px;align-items:center}
+.gauge.sm{height:130px}.gauge.sm .val b{font-size:24px}
+.mkk{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mkk div{background:var(--panel2);border-radius:10px;padding:10px}
+.mkk span{font-size:11px;color:var(--muted);display:block}.mkk b{font-size:15px;white-space:nowrap}
+.hm{display:grid;gap:4px;overflow-x:auto}
+.hmrow{display:grid;grid-template-columns:42px repeat(11,minmax(34px,1fr));gap:4px;align-items:center}
+.hmrow i{display:block;height:28px;border-radius:5px}.hmrow i.e{background:#131d33}
+.hml{font-size:10.5px;color:var(--muted);text-align:center}
+.phead{grid-template-columns:1.05fr 1fr!important}
+.ptabs{grid-template-columns:repeat(3,1fr)}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.mini div{background:var(--panel2);border-radius:10px;padding:10px}.mini span{font-size:11px;color:var(--muted);display:block}.mini b{font-size:17px;display:block}.mini em{font-style:normal;font-size:11px}.mini em.up{color:var(--green)}.mini em.dn{color:var(--red)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.cal i{display:flex;flex-direction:column;justify-content:space-between;height:46px;border-radius:7px;padding:4px 6px;font-style:normal;font-size:11px;font-weight:600;color:#06101f}.cal i s{text-decoration:none;font-size:10px;opacity:.75}.cal i.e{background:#131d33;color:var(--muted)}.cal i.off{background:repeating-linear-gradient(45deg,#18223a,#18223a 4px,#131d33 4px,#131d33 8px);color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;font-size:11.5px;color:var(--muted)}.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+table.piv th{text-align:center;font-size:11.5px}table.piv th small{color:var(--teal);font-size:10px}table.piv td{text-align:right}table.piv td:first-child{text-align:left}
+.tl{display:grid;gap:16px;margin-top:26px}
+.job{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px 24px;border-left:3px solid var(--teal)}
+.jh{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.jh h4{font-size:19px}.jh span{color:var(--muted);font-size:14px}.jh em{font-style:normal;font-size:13px;color:var(--teal);border:1px solid rgba(45,212,191,.35);padding:4px 10px;border-radius:999px;height:fit-content}
+.job ul{padding-left:18px;color:#c3cfe6;font-size:14.5px;display:grid;gap:6px}.job b{color:var(--text)}
+.mp{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+.mpc{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;transition:.2s}
+.mpc:hover{transform:translateY(-3px);border-color:#34507f}
+.mpc .ic{font-size:26px}.mpc h4{font-size:16.5px}.mpc p{color:var(--muted);font-size:14px;flex:1}
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.certs{list-style:none;display:grid;gap:10px;margin-top:12px}.certs li{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:flex;justify-content:space-between;gap:10px;font-size:14px}.certs span{color:var(--muted);font-size:13px}
+.skills{grid-template-columns:1fr 1fr}
+@media(max-width:980px){.mp,.edu{grid-template-columns:1fr}}
+
+@media(max-width:980px){.ptabs{grid-template-columns:1fr 1fr!important}.mini{grid-template-columns:1fr 1fr}.phead{grid-template-columns:1fr!important}.mkg{grid-template-columns:1fr}}
+
+@media(max-width:980px){
+  .kpis{grid-template-columns:repeat(3,1fr)} .kpis.k4{grid-template-columns:repeat(2,1fr)}
+  .g3,.g2,.g21,.g12,.about,.phead,.insights,.notes{grid-template-columns:1fr}
+  .hstats{grid-template-columns:repeat(2,1fr)}
+  nav ul{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a href="#top" class="brand"><span class="mono">MB</span>Mahmoud Batran</a>
+  <ul><li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li><li><a href="#projects">Dashboards</a></li><li><a href="#more">Data Science</a></li><li><a href="#education">Education</a></li><li><a href="#contact">Contact</a></li></ul>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <span class="tag"><i></i>Analytics Engineer / Data Engineer · Cairo, Egypt · Open to opportunities</span>
+  <h1>Building the pipelines behind<br><span>decisions that move money.</span></h1>
+  <p class="lead">I'm Mahmoud Batran, an Analytics Engineer / Data Engineer. I take data from SAP and Dynamics 365, pipe it into the cloud, model it cleanly, and serve it in Power BI, Metabase and custom web apps that management uses every day.</p>
+  <div class="btns">
+    <a class="btn primary" href="#projects">View dashboards</a>
+    <a class="btn" href="#contact">Get in touch</a>
+  </div>
+  <div class="hstats">
+    <div><b>3M+</b><span>records unified in a data warehouse</span></div>
+    <div><b>−70%</b><span>manual data-prep time</span></div>
+    <div><b>18% → 6%</b><span>branch out-of-stock rate</span></div>
+    <div><b>77 → 82.2%</b><span>customer satisfaction</span></div>
+  </div>
+</div></div></header>
+
+<section id="about"><div class="wrap about">
+  <div>
+    <div class="eyebrow">About me</div>
+    <h2>Engineering data that starts with the business question.</h2>
+    <p>I'm a Computer Science graduate (Kafr Elsheikh University) working as an Analytics Engineer / Data Engineer for retail and FMCG companies in Saudi Arabia. I own the whole chain: ingesting data from <b>SAP</b> and <b>Dynamics 365</b>, building data warehouses and cloud pipelines, and delivering dashboards that top management uses every day.</p>
+    <p>Beyond BI, I use <b>Python</b> for demand forecasting, web scraping and Arabic/English NLP. My focus is practical questions: <i>Are we on target today? Which branch will run out of stock, and when? What should we buy next season?</i></p>
+    <span class="disclaimer">ⓘ The dashboards below were built for <b>Tania Water</b> and <b>Alsanidi</b>. They recreate the original reports, but <b>every number is fake</b>. No real company data is shown.</span>
+  </div>
+  <div class="skills" id="skills">
+    <div class="skill"><h4>Data Engineering</h4><div class="chips"><span>SQL Server</span><span>Data warehousing</span><span>ETL pipelines</span><span>Google Cloud (GCP)</span><span>Microsoft Fabric</span><span>Dataflow Gen2</span><span>Incremental refresh</span></div></div>
+    <div class="skill"><h4>BI &amp; Visualization</h4><div class="chips"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Data modeling</span><span>Metabase</span><span>Web dashboards</span><span>Excel</span></div></div>
+    <div class="skill"><h4>Python &amp; Data Science</h4><div class="chips"><span>Pandas</span><span>NumPy</span><span>Matplotlib / Seaborn</span><span>Random Forest</span><span>Time-series forecasting</span><span>BERT · CAMeL Tools</span><span>Hypothesis testing</span></div></div>
+    <div class="skill"><h4>Automation &amp; Integration</h4><div class="chips"><span>Power Automate</span><span>Power Apps</span><span>Playwright</span><span>BeautifulSoup</span><span>Requests</span><span>Git / GitHub</span></div></div>
+    <div class="skill"><h4>Source Systems</h4><div class="chips"><span>SAP</span><span>Dynamics 365 F&amp;O</span><span>OData</span><span>SQL exports</span></div></div>
+    <div class="skill"><h4>Business Domains</h4><div class="chips"><span>Retail &amp; wholesale</span><span>E-commerce</span><span>FMCG / water</span><span>Purchasing</span><span>Inventory</span><span>KPI &amp; ROI</span></div></div>
+  </div>
+</div></section>
+
+<section id="experience" style="padding-top:20px"><div class="wrap">
+  <div class="eyebrow">Experience</div>
+  <h2>Where I've worked</h2>
+  <div class="tl">
+    <div class="job">
+      <div class="jh"><div><h4>Analytics Engineer / Data Engineer</h4><span>Tania Water · Saudi Arabia (FMCG, bottled water)</span></div><em>Current</em></div>
+      <ul>
+        <li>Built SAP → Google Cloud pipelines that ingest, store, clean and transform sales and stock data on an automated schedule.</li>
+        <li>Delivered the <b>Tania Sales Suite</b>, a live web dashboard tracking hourly sales vs. yesterday, target and last year across business units, channels, regions and fleet KPIs.</li>
+        <li>Built the <b>FG Stock Sufficiency</b> dashboard in Metabase: days of cover by region × SKU, urgency ranking, expected stock-out dates and replenishment suggestions.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="jh"><div><h4>Data Analyst</h4><span>Al-Sanidi for Camping · Saudi Arabia (retail, wholesale &amp; e-commerce)</span></div><em>05/2025 – Present</em></div>
+      <ul>
+        <li>Engineered a unified data warehouse combining sales (2023–2025), purchases (since 2020) and inventory across 10+ branches and 3 channels: <b>3M+ records</b>, cutting manual data prep by <b>70%</b>.</li>
+        <li>Integrated Dynamics 365, Excel, SQL exports and marketing systems, and built one product master dataset (item, configuration, size, colour, style, category, barcode, warehouse, branch).</li>
+        <li>Developed and automated Power BI dashboards (DAX, Power Query, data modeling) for retail, wholesale and e-commerce, used by top management.</li>
+        <li>Built Python demand forecasting (Random Forest, time series) that cut branch out-of-stock rates from <b>18% to 6%</b>.</li>
+        <li>Automated daily KPI reporting with Power Automate, delivered every morning at 8:00 AM.</li>
+        <li>Built competitor web-scraping pipelines (Playwright, BeautifulSoup) and Arabic/English sentiment analysis on 2,000+ reviews. Satisfaction rose from <b>77% to 82.2%</b>.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="projects" style="background:var(--bg2)"><div class="wrap">
+  <div class="eyebrow">Featured work</div>
+  <h2>Projects &amp; interactive dashboards</h2>
+  <p class="sub">Choose a project below. Each dashboard is live: switch pages with its tabs and use the slicers to filter, just like in Power BI. <b style="color:var(--amber)">All figures are fake</b>. Layouts and logic match the original reports, but no real company data is shown.</p>
+
+  <div class="ptabs" id="ptabs">
+    <button class="on" data-proj="pr5"><span>01 · Web app</span>Tania Sales Suite<small>Tania Water · SAP → GCP</small></button>
+    <button data-proj="pr6"><span>02 · Metabase</span>FG Stock Sufficiency<small>Tania Water · SAP → GCP</small></button>
+    <button data-proj="pr1"><span>03 · Power BI</span>Sales Budget vs. Actual<small>Alsanidi · Excel → Python</small></button>
+    <button data-proj="pr4"><span>04 · Power BI</span>Daily Sales Transactions<small>Alsanidi · OData → Fabric</small></button>
+    <button data-proj="pr2"><span>05 · Power BI</span>Summer Purchase Order<small>Alsanidi · D365 + Excel</small></button>
+    <button data-proj="pr3"><span>06 · Power BI</span>Inventory Provision<small>Alsanidi · D365 + Excel</small></button>
+  </div>
+
+  <!-- ============ PROJECT 5 : TANIA SALES SUITE ============ -->
+  <div class="proj" id="pr5">
+    <div class="phead">
+      <div><span class="num">SALES OPERATIONS · CLIENT: TANIA WATER</span><h3>Tania Sales Suite: Live Sales Web App</h3>
+      <p>A custom-built web dashboard (not Power BI) used daily by sales leadership. It shows hourly sales vs. yesterday, target and last year across Carton and Gallon business units, 13 channels and 6 regions, plus fleet KPIs like truck average and drop size.</p>
+      <div class="pstory mt">
+        <div><b>Problem</b>Sales results arrived as end-of-day SAP extracts, with no view of fleet productivity or target pace during the day.</div>
+        <div class="s"><b>Solution</b>Automated SAP billing ingestion into the cloud, a cleaned and de-duplicated sales model, and a fast web app with 4 views: Dashboard, Analytics, Explorer and Trends.</div>
+        <div><b>Impact</b>Leadership tracks today's sales by the hour and sees which channel or region is falling behind target before the day ends.</div>
+      </div></div>
+      <div class="how"><h5>How it's built</h5>
+        <ol class="flow">
+          <li><b>SAP billing data</b><span>Billing documents, materials and sales offices extracted from SAP</span></li>
+          <li><b>Ingestion &amp; storage in GCP</b><span>Raw extracts landed and stored in Google Cloud on an hourly schedule</span></li>
+          <li><b>Transform &amp; clean in GCP</b><span>De-duplication, per-material case conversion, region mapping, working-day target proration (Fridays off)</span></li>
+          <li><b>Business logic</b><span>Truck avg (shared vs. unique truck-days), drop size = volume ÷ unique bills, net value after discount</span></li>
+          <li><b>Web app</b><span>HTML/JavaScript front end with SSO login, hourly refresh and 4 analysis views</span></li>
+        </ol>
+        <div class="chips"><span>SAP</span><span>Google Cloud (GCP)</span><span>SQL</span><span>Python ETL</span><span>JavaScript</span><span>SSO</span></div>
+      </div>
+    </div>
+    <div class="dash" id="d5">
+      <div class="dtop">
+        <div class="dtitle"><span class="cmark tw">TW</span><div><h4>Tania Sales Suite <span class="demo">DEMO DATA</span></h4><small>Tania Water · Mon 23 Nov 2026 · in progress, updates hourly · all figures are fake</small></div></div>
+        <div class="slicers">
+          <label>Period<select id="d5Per"><option value="today">Today</option><option value="mtd" selected>MTD</option><option value="ytd">YTD</option></select></label>
+          <label>Business unit<select id="d5BU"><option value="all">All</option><option value="0">Carton</option><option value="1">Gallon</option></select></label>
+          <label>Region<select id="d5Reg"></select></label>
+        </div>
+      </div>
+      <div class="tabs" data-dash="d5"><button class="on" data-p="d5p1">Dashboard</button><button data-p="d5p2">Analytics</button><button data-p="d5p3">Trends</button></div>
+      <div class="page on" id="d5p1">
+        <div class="kpis k4" id="d5k"></div>
+        <div class="card"><h5>Daily sales value · current month vs. last year <small>bars = this year by BU · grey line = same dates last year</small></h5><div class="ch"><canvas id="d5daily"></canvas></div></div>
+        <div class="grid g2 mt" id="d5bu"></div>
+        <div class="card mt"><h5>Channels <small id="d5cmp"></small></h5><div class="tbl" id="d5ch" style="max-height:420px"></div></div>
+      </div>
+      <div class="page" id="d5p2">
+        <div class="insights" id="d5ex" style="margin-top:0;margin-bottom:14px;grid-template-columns:repeat(4,1fr)"></div>
+        <div class="grid g2">
+          <div class="card"><h5>Cumulative vs. last year &amp; target <small>MTD running total</small></h5><div class="ch"><canvas id="d5cum"></canvas></div></div>
+          <div class="card"><h5>Daily sales by business unit <small>dashed = daily target</small></h5><div class="ch"><canvas id="d5bud"></canvas></div></div>
+        </div>
+        <div class="grid g2 mt">
+          <div class="card"><h5>Channel vs. last year · MTD <small>100% = same as last year</small></h5><div class="ch tall"><canvas id="d5cly"></canvas></div></div>
+          <div class="card"><h5>Branch contribution · MTD <small>Carton / Gallon split</small></h5><div class="ch tall"><canvas id="d5br"></canvas></div></div>
+        </div>
+        <div class="card mt"><h5>Branch scorecard · MTD</h5><div class="tbl" id="d5bs"></div></div>
+      </div>
+      <div class="page" id="d5p3">
+        <div class="grid g2">
+          <div class="card"><h5>Sales by branch · stacked columns <small>MTD by day</small></h5><div class="ch tall"><canvas id="d5stk"></canvas></div></div>
+          <div class="card"><h5>Sales calendar · November 2026 <small>Fridays off</small></h5><div id="d5cal"></div></div>
+        </div>
+        <div class="grid g2 mt">
+          <div class="card"><h5>Average sales by weekday · MTD</h5><div class="ch"><canvas id="d5wd"></canvas></div></div>
+          <div class="card"><h5>Channel portfolio · MTD <small>x = share of sales · y = growth vs. LY · size = value</small></h5><div class="ch"><canvas id="d5bub"></canvas></div></div>
+        </div>
+      </div>
+      <div class="dfoot"><span>⚠ Demo data: all numbers are fake</span><span>Original: custom web app · recreated here</span></div>
+    </div>
+  </div>
+
+  <!-- ============ PROJECT 6 : FG STOCK SUFFICIENCY ============ -->
+  <div class="proj" id="pr6">
+    <div class="phead">
+      <div><span class="num">SUPPLY CHAIN · CLIENT: TANIA WATER</span><h3>Finished-Goods Stock Sufficiency (Days of Cover)</h3>
+      <p>A Metabase dashboard that answers one question every morning: <i>which branch will run out of which SKU, and when?</i> It combines opening stock with average daily sales to compute days of cover (DOS), then ranks every region × SKU by urgency with a suggested replenishment.</p>
+      <div class="pstory mt">
+        <div><b>Problem</b>Stock and sales sat in different SAP reports, so stock-outs were discovered at the branch instead of prevented.</div>
+        <div class="s"><b>Solution</b>One model of opening stock (unrestricted + in transit + QC) and a 14-trading-day sales average. DOS is colour-coded and comes with an expected stock-out date and replenishment to 14 days.</div>
+        <div><b>Impact</b>Supply planners get a ranked action list by region and SKU instead of reconciling spreadsheets.</div>
+      </div></div>
+      <div class="how"><h5>How it's built</h5>
+        <ol class="flow">
+          <li><b>SAP stock &amp; billing</b><span>Stock by plant and storage location (unrestricted, in transit, QC) plus net sales</span></li>
+          <li><b>Ingestion &amp; storage in GCP</b><span>Daily extracts landed and stored in Google Cloud</span></li>
+          <li><b>Transform in GCP (SQL)</b><span>Plant → region mapping, selling-unit conversion, 14-trading-day average excluding Fridays, Eids and outlier days, returns netted off</span></li>
+          <li><b>DOS logic</b><span>DOS = (Stock − ADS) ÷ ADS · urgency bands · stock-out date · replenishment = ADS × 14 − stock</span></li>
+          <li><b>Metabase dashboard</b><span>3 tabs with linked filters (as-at date, region, brand, SKU, urgency, days of cover)</span></li>
+        </ol>
+        <div class="chips"><span>SAP</span><span>Google Cloud (GCP)</span><span>SQL</span><span>Metabase</span><span>Inventory analytics</span></div>
+      </div>
+    </div>
+    <div class="dash" id="d6">
+      <div class="dtop">
+        <div class="dtitle"><span class="cmark tw">TW</span><div><h4>FG Stock by Branch and SKU <span class="demo">DEMO DATA</span></h4><small>Tania Water · stock as at today · all figures are fake</small></div></div>
+        <div class="slicers">
+          <label>Region<select id="d6Reg"></select></label>
+          <label>Category<select id="d6Cat"></select></label>
+          <label>Urgency<select id="d6Urg"><option value="all">All</option><option>Critical</option><option>High</option><option>Watch</option></select></label>
+        </div>
+      </div>
+      <div class="tabs" data-dash="d6"><button class="on" data-p="d6p1">FG Stock Sufficiency</button><button data-p="d6p2">Summary &amp; Recommendations</button><button data-p="d6p3">Category Summary</button></div>
+      <div class="page on" id="d6p1">
+        <div class="card"><h5>1 · Opening FG stock <small>unrestricted + in transit + QC inspection · units</small></h5><div class="tbl" id="d6stock"></div></div>
+        <div class="card mt"><h5>2 · Average daily sales <small>last 14 trading days · Fridays, Eids &amp; quiet days excluded</small></h5><div class="tbl" id="d6ads"></div></div>
+        <div class="card mt"><h5>3 · Days of cover (DOS) <small>(Stock − ADS) ÷ ADS</small></h5><div class="legend" id="d6leg"></div><div class="tbl" id="d6dos"></div></div>
+      </div>
+      <div class="page" id="d6p2">
+        <div class="kpis" id="d6k" style="grid-template-columns:repeat(5,1fr)"></div>
+        <div class="card"><h5>Region × SKU under 7 days of cover <small>ranked by urgency · replenishment to reach 14 days</small></h5><div class="tbl" id="d6rec" style="max-height:420px"></div></div>
+      </div>
+      <div class="page" id="d6p3">
+        <div class="grid g2">
+          <div class="card"><h5>DOS by category · national</h5><div class="ch"><canvas id="d6cdos"></canvas></div></div>
+          <div class="card"><h5>Stock vs. 14-day need by category</h5><div class="ch"><canvas id="d6need"></canvas></div></div>
+        </div>
+        <div class="card mt"><h5>DOS by category and region</h5><div class="tbl" id="d6cr"></div></div>
+      </div>
+      <div class="dfoot"><span>⚠ Demo data: all numbers are fake</span><span>Original built in Metabase · recreated for web</span></div>
+    </div>
+  </div>
+
+  <!-- ============ PROJECT 1 : BUDGET ============ -->
+  <div class="proj" id="pr1">
+    <div class="phead">
+      <div><span class="num">SALES PERFORMANCE · CLIENT: ALSANIDI</span><h3>Sales Budget vs. Actual — FY 2025/26</h3>
+      <p>A management report that tracks every branch and channel against the annual sales budget. It covers value and units, month by month, and drills from main category to sub-category to individual product.</p>
+      <div class="pstory mt">
+        <div><b>Problem</b>Budget follow-up lived in separate Excel files, so gaps showed up weeks late.</div>
+        <div class="s"><b>Solution</b>One model that joins actual sales with the budget at branch × month × product level. Seven pages go from an executive overview down to SKU detail.</div>
+        <div><b>Impact</b>Management sees under-performing branches and categories mid-month and can act before quarter-end.</div>
+      </div></div>
+      <div class="how"><h5>How it's built</h5>
+        <ol class="flow">
+          <li><b>Excel exports</b><span>Sales transactions, budget sheet and product master exported from the ERP</span></li>
+          <li><b>Power Query</b><span>Cleans, unpivots and maps budget lines to product hierarchy and branches</span></li>
+          <li><b>Star schema + DAX</b><span>Budget and Sales facts share Date, Branch and Product dimensions. Measures cover achievement %, variance, top month and units vs. value</span></li>
+          <li><b>Power BI report</b><span>7 pages with slicers, conditional formatting and drill-down</span></li>
+          <li class="wip"><b>In progress: Python pipeline</b><span>Automates the extraction and outputs clean tables to Power BI, replacing the manual Excel exports</span></li>
+        </ol>
+        <div class="chips"><span>Excel</span><span>Power Query</span><span>DAX</span><span>Star schema</span><span>Python</span><span>Power BI</span></div>
+      </div>
+    </div>
+    <div class="dash" id="d3">
+      <div class="dtop">
+        <div class="dtitle"><span class="cmark">AS</span><div><h4>Sales Budget vs. Actual <span class="demo">DEMO DATA</span></h4><small>Alsanidi · FY 2025/26 · all figures are fake</small></div></div>
+        <div class="slicers">
+          <label>Branch<select id="d3Branch"></select></label>
+          <label>Month<select id="d3Month"></select></label>
+          <label>Main category<select id="d3Cat"></select></label>
+        </div>
+      </div>
+      <div class="tabs" data-dash="d3">
+        <button class="on" data-p="d3p1">Overview</button><button data-p="d3p2">Main Categories</button><button data-p="d3p3">Category Details</button><button data-p="d3p4">Sub-category Details</button><button data-p="d3p5">Product Details</button><button data-p="d3p6">Products Over Months</button><button data-p="d3p7">Notes</button>
+      </div>
+      <!-- P1 overview -->
+      <div class="page on" id="d3p1">
+        <div class="kpis k4" id="d3k"></div>
+        <div class="grid g12">
+          <div class="card"><h5>Achievement % <small>actual ÷ budget</small></h5><div class="gauge"><canvas id="d3gauge"></canvas><div class="val"><b id="d3gv"></b><span>of budget</span></div></div></div>
+          <div class="card"><h5>Monthly achievement % <small>dashed line = 100% target</small></h5><div class="ch"><canvas id="d3line"></canvas></div></div>
+        </div>
+        <div class="grid g2 mt">
+          <div class="card"><h5>Sales by branch <small>actual vs. budget</small></h5><div class="ch"><canvas id="d3branch"></canvas></div></div>
+          <div class="card"><h5>Achievement % by branch</h5><div class="ch"><canvas id="d3bach"></canvas></div></div>
+        </div>
+        <div class="card mt"><h5>Budget vs. actual <small>value and units</small></h5><div class="tbl" id="d3tbl"></div></div>
+        <div class="insights" id="d3ins"></div>
+      </div>
+      <!-- P2 main categories -->
+      <div class="page" id="d3p2">
+        <div class="grid g21">
+          <div class="card"><h5>Achievement % across main categories <small>green ≥ 85% · amber ≥ 70% · red &lt; 70%</small></h5><div class="ch" style="height:400px"><canvas id="d3cat"></canvas></div></div>
+          <div class="card"><h5>Sales mix by main category</h5><div class="ch" style="height:400px"><canvas id="d3mix"></canvas></div></div>
+        </div>
+      </div>
+      <!-- P3 category details -->
+      <div class="page" id="d3p3">
+        <div class="card"><h5>Budget vs. sales across main categories <small>value (SAR) · units</small></h5><div class="tbl" id="d3mat" style="max-height:380px"></div></div>
+        <div class="card mt"><h5>Sales value vs. units sold by main category <small>bars = value · line = units</small></h5><div class="ch"><canvas id="d3combo"></canvas></div></div>
+      </div>
+      <!-- P4 sub-category details -->
+      <div class="page" id="d3p4">
+        <div class="card"><h5>Budget vs. sales across sub-categories <small>with monthly trend and top month</small></h5><div class="tbl" id="d3sub" style="max-height:360px"></div></div>
+        <div class="grid g2 mt">
+          <div class="card"><h5>Sales value over months</h5><div class="ch"><canvas id="d3sv"></canvas></div></div>
+          <div class="card"><h5>Units sold over months</h5><div class="ch"><canvas id="d3su"></canvas></div></div>
+        </div>
+      </div>
+      <!-- P5 product details -->
+      <div class="page" id="d3p5">
+        <div class="grid g2">
+          <div class="card"><h5>Value (SAR)</h5><div class="mk" id="d3pv"></div></div>
+          <div class="card"><h5>Units</h5><div class="mk" id="d3pu"></div></div>
+        </div>
+        <div class="card mt"><h5>Product sales by branch <small>darker = higher sales</small><label class="topn">Top <select id="d3TopN"><option>10</option><option>20</option><option>40</option></select></label></h5><div class="tbl" id="d3pb" style="max-height:420px"></div></div>
+      </div>
+      <!-- P6 products over months -->
+      <div class="page" id="d3p6">
+        <div class="grid" style="grid-template-columns:1.25fr 1fr">
+          <div class="card"><h5>Product sales <small>click a row to chart it</small></h5><div class="tbl" id="d3prod" style="max-height:400px"></div></div>
+          <div class="card"><h5 id="d3pmt">Sales over months · all products</h5><div class="ch" style="height:360px"><canvas id="d3pm"></canvas></div></div>
+        </div>
+      </div>
+      <!-- P7 notes -->
+      <div class="page" id="d3p7">
+        <div class="notes">
+          <div class="card"><h5>Period</h5><p>All figures (budget and sales) cover July 2025 to May 2026, fiscal months 1–11.</p></div>
+          <div class="card"><h5>Annual budget</h5><p>The company's total sales budget for the fiscal year is SAR 118M (demo figure).</p></div>
+          <div class="card"><h5>E-commerce</h5><p>The E-commerce channel groups all online sales platforms (marketplaces and the brand's own web store) under one sales group.</p></div>
+          <div class="card"><h5>Refresh</h5><p>The budget is updated at the end of each month. Achievement % = Sales ÷ Budget. Variance = Budget − Sales.</p></div>
+        </div>
+      </div>
+      <div class="dfoot"><span>⚠ Demo data: all numbers are fake</span><span>Original built in Power BI · recreated for web</span></div>
+    </div>
+  </div>
+
+  <!-- ============ PROJECT 4 : TANIA DAILY ============ -->
+  <div class="proj" id="pr4">
+    <div class="phead">
+      <div><span class="num">SALES OPERATIONS · CLIENT: ALSANIDI</span><h3>Daily Sales Transactions</h3>
+      <p>A near real-time view of daily sales across channels, retail branches and product categories, with weekday patterns, day-of-month trends and year-over-year comparison.</p>
+      <div class="pstory mt">
+        <div><b>Problem</b>Daily sales figures came from manual ERP extracts, so management saw yesterday's numbers late and inconsistently.</div>
+        <div class="s"><b>Solution</b>An automated pipeline pulls transactions over OData into a Fabric Dataflow Gen2, with incremental refresh so only new days are loaded.</div>
+        <div><b>Impact</b>The report refreshes automatically every day with fast loads, so the sales team starts the day with up-to-date numbers.</div>
+      </div></div>
+      <div class="how"><h5>How it's built</h5>
+        <ol class="flow">
+          <li><b>OData feed (D365)</b><span>Sales transactions read directly from Dynamics 365 through its OData endpoints</span></li>
+          <li><b>Dataflow Gen2 (Fabric)</b><span>Power Query transformations, data types and keys, landed into a Lakehouse/semantic model</span></li>
+          <li><b>Incremental refresh</b><span>RangeStart/RangeEnd partitions: only recent days reload, while history stays cached</span></li>
+          <li><b>Scheduled automation</b><span>Daily refresh with no manual steps</span></li>
+          <li><b>Power BI report</b><span>Channel, branch, category, weekday and YoY analysis (Gregorian and Hijri calendars)</span></li>
+        </ol>
+        <div class="chips"><span>OData</span><span>Dataflow Gen2</span><span>Microsoft Fabric</span><span>Incremental refresh</span><span>DAX time intelligence</span><span>Power BI</span></div>
+      </div>
+    </div>
+    <div class="dash" id="d4">
+      <div class="dtop">
+        <div class="dtitle"><span class="cmark">AS</span><div><h4>Daily Sales Transactions <span class="demo">DEMO DATA</span></h4><small>Alsanidi · all figures are fake</small></div></div>
+        <div class="slicers">
+          <label>Sales channel<select id="d4Ch"></select></label>
+          <label>Period<select id="d4Per"><option value="30">Last 30 days</option><option value="mtd">Month to date</option><option value="ytd" selected>Year to date 2026</option><option value="all">All (Jan 25 – May 26)</option></select></label>
+        </div>
+      </div>
+      <div class="tabs" data-dash="d4">
+        <button class="on" data-p="d4p1">Company Sales</button><button data-p="d4p2">Retail Branches</button><button data-p="d4p3">Categories</button><button data-p="d4p4">Weekdays</button><button data-p="d4p5">Days of Month</button><button data-p="d4p6">Year over Year</button><button data-p="d4p7">YoY Channels &amp; Categories</button>
+      </div>
+      <div class="page on" id="d4p1">
+        <div class="kpis" id="d4k1"></div>
+        <div class="grid g3">
+          <div class="card"><h5>Share by channel <small>value</small></h5><div class="ch"><canvas id="d4cv"></canvas></div></div>
+          <div class="card"><h5>Share by channel <small>units</small></h5><div class="ch"><canvas id="d4cu"></canvas></div></div>
+          <div class="card"><h5>Daily sales <small>selected period</small></h5><div class="ch"><canvas id="d4day"></canvas></div></div>
+        </div>
+        <div class="card mt"><h5>Monthly sales <small>bars = value · line = units</small></h5><div class="ch"><canvas id="d4mon"></canvas></div></div>
+      </div>
+      <div class="page" id="d4p2">
+        <div class="kpis" id="d4k2"></div>
+        <div class="grid g2">
+          <div class="card"><h5>Branch share <small>value</small></h5><div class="ch"><canvas id="d4bv"></canvas></div></div>
+          <div class="card"><h5>Branch share <small>units</small></h5><div class="ch"><canvas id="d4bu"></canvas></div></div>
+        </div>
+        <div class="card mt"><h5>Category × branch sales <small>value</small></h5><div class="tbl" id="d4bt"></div></div>
+      </div>
+      <div class="page" id="d4p3">
+        <div class="grid g2">
+          <div class="card"><h5>Sales by category <small>value</small></h5><div class="ch tall"><canvas id="d4cat"></canvas></div></div>
+          <div class="card"><h5>Category scorecard</h5><div class="tbl" id="d4ct"></div></div>
+        </div>
+      </div>
+      <div class="page" id="d4p4">
+        <div class="kpis" id="d4k4"></div>
+        <div class="grid g12">
+          <div class="card"><h5>Average sales by weekday</h5><div class="ch tall"><canvas id="d4wd"></canvas></div></div>
+          <div class="card"><h5>Sales calendar heatmap <small>last 10 weeks · darker = higher sales</small></h5><div id="d4heat"></div></div>
+        </div>
+      </div>
+      <div class="page" id="d4p5">
+        <div class="card"><h5>Average sales by day of month <small>bars = value · line = units · spot pay-day peaks</small></h5><div class="ch tall"><canvas id="d4dom"></canvas></div></div>
+      </div>
+      <div class="page" id="d4p6">
+        <div class="slicers" style="margin-bottom:12px"><label>Month<select id="d4YM"><option value="0">January</option><option value="1">February</option><option value="2">March</option><option value="3">April</option><option value="4" selected>May</option></select></label></div>
+        <div class="kpis k4" id="d4k6"></div>
+        <div class="card"><h5>Daily sales: 2026 vs. 2025 <small>same month, day by day</small></h5><div class="ch tall"><canvas id="d4yoy"></canvas></div></div>
+      </div>
+      <div class="page" id="d4p7">
+        <div class="grid g2">
+          <div class="card"><h5>Channels: Jan–May 2026 vs. 2025</h5><div class="ch tall"><canvas id="d4ych"></canvas></div></div>
+          <div class="card"><h5>Categories: Jan–May 2026 vs. 2025</h5><div class="ch tall"><canvas id="d4ycat"></canvas></div></div>
+        </div>
+      </div>
+      <div class="dfoot"><span>⚠ Demo data: all numbers are fake</span><span>Original built in Power BI · recreated for web</span></div>
+    </div>
+  </div>
+
+  <!-- ============ PROJECT 2 : PURCHASE ORDER ============ -->
+  <div class="proj" id="pr2">
+    <div class="phead">
+      <div><span class="num">PURCHASING · CLIENT: ALSANIDI</span><h3>Summer Season Purchase Order Analysis</h3>
+      <p>A planning tool for the buying team. It checks a proposed seasonal purchase order against last season's sales, current stock and expected revenue before the order is approved.</p>
+      <div class="pstory mt">
+        <div><b>Problem</b>Seasonal orders were sized by gut feeling, which caused both over-stock and lost sales.</div>
+        <div class="s"><b>Solution</b>Compare ordered units with last season's sales for each SKU, flag under-ordering, and estimate the sales lost before stock arrives.</div>
+        <div><b>Impact</b>Order lines are approved, trimmed or increased based on data, with the revenue impact visible upfront.</div>
+      </div></div>
+      <div class="how"><h5>How it's built</h5>
+        <ol class="flow">
+          <li><b>D365 F&amp;O</b><span>Sales history, on-hand stock and item master from Dynamics 365 Finance &amp; Operations</span></li>
+          <li><b>External sheets</b><span>The proposed purchase order and cost sheet, maintained by the buying team in Excel</span></li>
+          <li><b>Mixed (composite) model</b><span>ERP tables and Excel sheets combined in one model through shared item keys</span></li>
+          <li><b>DAX measures</b><span>Coverage %, gap vs. demand, lost sales before arrival, YoY difference</span></li>
+          <li><b>Power BI report</b><span>Overview and comparison with last season</span></li>
+        </ol>
+        <div class="chips"><span>D365 F&amp;O</span><span>Excel</span><span>Composite model</span><span>DAX</span><span>Power BI</span></div>
+      </div>
+    </div>
+    <div class="dash" id="d1">
+      <div class="dtop">
+        <div class="dtitle"><span class="cmark">AS</span><div><h4>Summer Purchase Order Review <span class="demo">DEMO DATA</span></h4><small>Alsanidi · Season 2026 · all figures are fake</small></div></div>
+        <div class="slicers">
+          <label>Sales month<select id="d1Month"><option value="all">All months</option><option value="0">May</option><option value="1">June</option><option value="2">July</option><option value="3">August</option></select></label>
+          <label>Product launch year<select id="d1Year"><option value="all">All</option><option>2023</option><option>2024</option><option>2025</option></select></label>
+        </div>
+      </div>
+      <div class="tabs" data-dash="d1"><button class="on" data-p="d1p1">Overview</button><button data-p="d1p2">vs. Last Season</button></div>
+      <div class="page on" id="d1p1">
+        <div class="kpis" id="d1k"></div>
+        <div class="grid g3">
+          <div class="card"><h5>Units ordered vs. expected demand</h5><div class="ch"><canvas id="d1c1"></canvas></div></div>
+          <div class="card"><h5>Purchase cost vs. expected revenue</h5><div class="ch"><canvas id="d1c2"></canvas></div></div>
+          <div class="card"><h5>Current stock vs. sales lost before arrival</h5><div class="ch"><canvas id="d1c3"></canvas></div></div>
+        </div>
+        <div class="card mt"><h5>Order lines <small>sorted by shortfall · red = ordering less than expected demand</small></h5><div class="tbl" id="d1tbl"></div></div>
+        <div class="insights" id="d1ins"></div>
+      </div>
+      <div class="page" id="d1p2">
+        <div class="grid g12">
+          <div class="card"><h5>Ordered vs. last season units <small>points below the line = order smaller than last year</small></h5><div class="ch tall"><canvas id="d1sc"></canvas></div></div>
+          <div class="card"><h5>Year-over-year comparison</h5><div class="tbl" id="d1tbl2" style="max-height:300px"></div></div>
+        </div>
+      </div>
+      <div class="dfoot"><span>⚠ Demo data: all numbers are fake</span><span>Original built in Power BI · recreated for web</span></div>
+    </div>
+  </div>
+
+  <!-- ============ PROJECT 3 : INVENTORY ============ -->
+  <div class="proj" id="pr3">
+    <div class="phead">
+      <div><span class="num">INVENTORY · CLIENT: ALSANIDI</span><h3>Stock Clearance &amp; Inventory Provision</h3>
+      <p>Tracks slow-moving and negative-margin stock set aside for clearance. It shows what has sold, what remains, and whether actual discounts stay within the planned provision.</p>
+      <div class="pstory mt">
+        <div><b>Problem</b>Finance needed to know how much of the inventory provision had been used and where discounting went past the plan.</div>
+        <div class="s"><b>Solution</b>A three-page report covering sell-through by channel and category, planned vs. actual discount, and items selling below cost.</div>
+        <div><b>Impact</b>Gave Finance a clear view of the provision used, with discount overruns flagged by channel and category.</div>
+      </div></div>
+      <div class="how"><h5>How it's built</h5>
+        <ol class="flow">
+          <li><b>D365 F&amp;O</b><span>Sales lines, on-hand quantity, item cost and channels from Dynamics 365 Finance &amp; Operations</span></li>
+          <li><b>External sheets</b><span>Provision allocation list with planned discount % per item, maintained by Finance</span></li>
+          <li><b>Mixed (composite) model</b><span>ERP data and the allocation sheet joined on item keys</span></li>
+          <li><b>DAX measures</b><span>Sell-through, planned vs. actual discount, margin after discount, expected loss</span></li>
+          <li><b>Power BI report</b><span>Overview, negative-stock allocation and items below cost</span></li>
+        </ol>
+        <div class="chips"><span>D365 F&amp;O</span><span>Excel</span><span>Composite model</span><span>DAX</span><span>Power BI</span></div>
+      </div>
+    </div>
+    <div class="dash" id="d2">
+      <div class="dtop">
+        <div class="dtitle"><span class="cmark">AS</span><div><h4>Inventory Provision Tracker <span class="demo">DEMO DATA</span></h4><small>Alsanidi · Clearance program · all figures are fake</small></div></div>
+        <div class="slicers"><label>Channel<select id="d2Ch"><option value="all">All channels</option><option value="0">Retail</option><option value="1">Wholesale</option><option value="2">E-commerce</option></select></label></div>
+      </div>
+      <div class="tabs" data-dash="d2"><button class="on" data-p="d2p1">Overview</button><button data-p="d2p2">Negative Stock</button><button data-p="d2p3">Items Below Cost</button></div>
+      <div class="page on" id="d2p1">
+        <div class="kpis" id="d2k"></div>
+        <div class="grid g21">
+          <div class="card"><h5>Units sold by main category</h5><div class="ch tall"><canvas id="d2cat"></canvas></div></div>
+          <div class="card"><h5>Sell-through</h5><div class="gauge" style="height:300px"><canvas id="d2gauge"></canvas><div class="val"><b id="d2gv"></b><span>of allocated units sold</span></div></div></div>
+        </div>
+        <div class="grid g3 mt">
+          <div class="card"><h5>Sales by channel</h5><div class="ch"><canvas id="d2ch"></canvas></div></div>
+          <div class="card"><h5>Gross vs. net sales</h5><div class="ch"><canvas id="d2net"></canvas></div></div>
+          <div class="card"><h5>Planned vs. actual discount %</h5><div class="ch"><canvas id="d2disc"></canvas></div></div>
+        </div>
+        <div class="insights" id="d2ins"></div>
+      </div>
+      <div class="page" id="d2p2">
+        <div class="kpis k4" id="d2k2"></div>
+        <div class="grid g2">
+          <div class="card"><h5>Negative stock: sold vs. remaining by category</h5><div class="ch tall"><canvas id="d2neg"></canvas></div></div>
+          <div class="card"><h5>Loss by channel</h5><div class="ch tall"><canvas id="d2loss"></canvas></div></div>
+        </div>
+      </div>
+      <div class="page" id="d2p3">
+        <div class="grid g12">
+          <div class="card"><h5>Loss on below-cost SKUs by category</h5><div class="ch tall"><canvas id="d2mar"></canvas></div></div>
+          <div class="card"><h5>SKUs sold below cost</h5><div class="tbl" id="d2tbl" style="max-height:300px"></div></div>
+        </div>
+      </div>
+      <div class="dfoot"><span>⚠ Demo data: all numbers are fake</span><span>Original built in Power BI · recreated for web</span></div>
+    </div>
+  </div>
+</div></section>
+
+
+<section id="more"><div class="wrap">
+  <div class="eyebrow">Beyond dashboards</div>
+  <h2>Data science &amp; automation projects</h2>
+  <p class="sub">Python, machine learning and automation work delivered at Al-Sanidi.</p>
+  <div class="mp">
+    <div class="mpc"><span class="ic">🏗️</span><h4>Enterprise Data Warehouse</h4><p>Sales (2023–2025), purchases (since 2020) and inventory from Dynamics 365, Excel and SQL in one warehouse. It cut data preparation time by 70% and reporting lag by 90%, which enabled accurate monthly executive reviews.</p><div class="chips"><span>SQL Server</span><span>ETL</span><span>D365</span><span>Data modeling</span></div></div>
+    <div class="mpc"><span class="ic">📈</span><h4>Demand Forecasting Automation</h4><p>Monthly demand forecasts per product and branch using Random Forest and time-series models. They feed stock allocation and supply planning and reduced stock-outs across branches.</p><div class="chips"><span>Python</span><span>scikit-learn</span><span>Time series</span></div></div>
+    <div class="mpc"><span class="ic">💬</span><h4>Customer Sentiment Analysis</h4><p>Arabic + English pipeline on 2K+ Google reviews. It classifies satisfaction and routes issues to the responsible department, lifting satisfaction from 77% to 82.2%.</p><div class="chips"><span>BERT</span><span>CAMeL Tools</span><span>NLP</span></div></div>
+    <div class="mpc"><span class="ic">🕸️</span><h4>Competitor Market Intelligence</h4><p>Automated scraping of 10K+ competitor products (price, discount, description, images) to support pricing strategy and strengthen supplier negotiations.</p><div class="chips"><span>Playwright</span><span>BeautifulSoup</span><span>Requests</span></div></div>
+    <div class="mpc"><span class="ic">🏷️</span><h4>Promotion &amp; Discount Analytics</h4><p>Linked discount levels to sales uplift and ROI by campaign, improving promotional decision accuracy by 15%.</p><div class="chips"><span>Power BI</span><span>Python</span><span>ROI analysis</span></div></div>
+    <div class="mpc"><span class="ic">📦</span><h4>Slow-Moving Inventory &amp; Suppliers</h4><p>Flagged slow-moving SKUs, overstock ratios and supplier delays, which helped reduce stagnant inventory by 12% and made supplier evaluation more transparent.</p><div class="chips"><span>Power BI</span><span>DAX</span><span>Supplier KPIs</span></div></div>
+  </div>
+</div></section>
+
+<section id="education" style="background:var(--bg2)"><div class="wrap">
+  <div class="edu">
+    <div><div class="eyebrow">Education</div><h2>Bachelor of Computer Science</h2><p class="sub">Kafr Elsheikh University · 2019 – 2023</p>
+      <div class="eyebrow" style="margin-top:26px">Languages</div><div class="chips" style="margin-top:8px"><span>Arabic · Native</span><span>English · Intermediate</span></div></div>
+    <div><div class="eyebrow">Certificates</div>
+      <ul class="certs"><li><b>ITI Summer Training: Python / Django</b><span>2022</span></li><li><b>Database Fundamentals</b><span>Mahara Tech · 2022</span></li><li><b>Intro to Data Science &amp; ML</b><span>Edraak · 2021</span></li><li><b>Intro to AI</b><span>Edraak · 2021</span></li><li><b>Intro to Microsoft Excel</b><span>Coursera · 2021</span></li></ul></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="contact">
+    <div class="eyebrow">Contact</div>
+    <h2>Let's build your next data pipeline.</h2>
+    <p class="sub" style="margin:0 auto">Open to Analytics Engineer / Data Engineer roles, freelance data projects and consulting · based in Cairo, Egypt.</p>
+    <div class="btns">
+      <a class="btn primary" href="mailto:Mbatran2030@gmail.com">✉ Mbatran2030@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/mahmoud-batran/" target="_blank">LinkedIn</a>
+      <a class="btn" href="https://github.com/MahmoudBatran" target="_blank">GitHub</a>
+    </div>
+  </div>
+</div></section>
+
+<footer>© 2026 Mahmoud Batran · Dashboards recreate client work for Alsanidi and Tania Water. All figures shown are fake.</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.6.1/dist/chart.umd.min.js"></script>
+<script>
+/* ---------- helpers ---------- */
+
+
+let seed=20260611;function rnd(){seed=(seed*1664525+1013904223)%4294967296;return seed/4294967296}
+const ri=(a,b)=>Math.round(a+rnd()*(b-a));
+const fmt=(n,d=0)=>{const a=Math.abs(n);if(a>=1e6)return(n/1e6).toFixed(a>=1e7?1:2)+'M';if(a>=1e3)return(n/1e3).toFixed(a>=1e5?0:1)+'K';return n.toFixed(d)};
+const usd=n=>(n<0?'-SAR ':'SAR ')+fmt(Math.abs(n));
+const num=n=>Math.round(n).toLocaleString('en-US');
+const pct=n=>(n*100).toFixed(1)+'%';
+const sum=(a,f)=>a.reduce((s,x)=>s+f(x),0);
+const PAL=['#2dd4bf','#60a5fa','#a78bfa','#fbbf24','#34d399','#f472b6','#38bdf8','#fb923c','#818cf8','#4ade80','#facc15','#94a3b8'];
+const C={teal:'#2dd4bf',blue:'#60a5fa',amber:'#fbbf24',red:'#f87171',violet:'#a78bfa',green:'#34d399',muted:'#8a9bbd',line:'#22304f'};
+const pill=p=>`<span class="pill ${p>=.85?'pg':p>=.7?'pa':'pr'}">${(p*100).toFixed(0)}%</span>`;
+const barCell=(p,col)=>`<div class="bar"><i style="width:${Math.min(100,p*100)}%;background:${col||(p>=.85?C.green:p>=.7?C.amber:C.red)}"></i></div>`;
+
+Chart.defaults.color=C.muted;Chart.defaults.font.family='Inter';Chart.defaults.font.size=11;
+Chart.defaults.borderColor='rgba(34,48,79,.6)';Chart.defaults.plugins.legend.labels.boxWidth=10;
+Chart.defaults.plugins.tooltip.backgroundColor='#0b1324';Chart.defaults.plugins.tooltip.borderColor=C.line;Chart.defaults.plugins.tooltip.borderWidth=1;Chart.defaults.plugins.tooltip.padding=10;
+Chart.defaults.maintainAspectRatio=false;
+const charts={};
+function mk(id,cfg){if(charts[id])charts[id].destroy();charts[id]=new Chart(document.getElementById(id),cfg);}
+const valLabels={id:'valLabels',afterDatasetsDraw(ch,_,o){if(!o||!o.on)return;const{ctx}=ch;ctx.save();ctx.font='600 11px Inter';ctx.fillStyle='#e6ecf7';
+  ch.data.datasets.forEach((ds,i)=>{const m=ch.getDatasetMeta(i);if(m.hidden)return;m.data.forEach((el,j)=>{const v=ds.data[j];const t=o.f?o.f(v):v;const h=ch.options.indexAxis==='y';
+  ctx.textAlign=h?'left':'center';ctx.textBaseline=h?'middle':'bottom';ctx.fillText(t,h?el.x+6:el.x,h?el.y:el.y-4)})});ctx.restore()}};
+Chart.register(valLabels);
+function gauge(id,p,col){mk(id,{type:'doughnut',data:{datasets:[{data:[Math.min(p,1),Math.max(0,1-p)],backgroundColor:[col,'#1b2742'],borderWidth:0,borderRadius:6}]},
+  options:{rotation:-90,circumference:180,cutout:'78%',plugins:{tooltip:{enabled:false},legend:{display:false}}}})}
+document.querySelectorAll('.tabs').forEach(t=>t.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  t.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));const d=t.dataset.dash;
+  document.querySelectorAll('#'+d+' .page').forEach(p=>p.classList.toggle('on',p.id===b.dataset.p));render[d]();}));
+const render={};
+
+/* =============== D3: Budget vs Actual (Alsanidi, fake data) =============== */
+const MONTHS=['Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26','May 26'];
+const SEAS=[.75,.7,.85,.95,1.2,1.35,1.4,1.05,.9,.85,.8];
+const BR=[['Exit 5 Store',21],['Exit 12 Store',19],['Wholesale',26],['Van Sales',14],['E-commerce',11],['Jeddah Store',10],['Hafar Al-Batin Store',8],['Buraidah Store',2]];
+const BR_ACH=[.9,.82,.52,.68,.78,.8,.66,.94];
+const TREE=[
+ ['Camping Stoves',.97,[['Portable Stoves',['Travel Gas Stove','Folding Burner']],['Rocket Burners',['Rocket Burner Steel','Twin Burner Pro']]]],
+ ['Gas & Cartridges',.95,[['Butane Refills',['Butane Refill 450g','Butane Refill 220g']],['Gas Cylinders',['Gas Cylinder 2kg','Gas Canister 1.2kg']]]],
+ ['Charcoal & Firewood',.92,[['Charcoal',['Charcoal Briquettes 10kg','Coconut Charcoal 5kg']],['Firewood',['Premium Firewood 10kg','Firewood Bundle 5kg']]]],
+ ['Tents & Shelters',.66,[['Air Tents',['Canvas Air Tent 3×3m','Air Tent 3×6m']],['Family Tents',['Lined Family Tent','Cotton Tent Khaki']]]],
+ ['Sleeping & Mats',.8,[['Sleeping Mats',['Royal Sleeping Mat','Cotton Mat 120×220']],['Floor Mattresses',['Floor Mattress 2m','Foldable Mattress']]]],
+ ['Outdoor Furniture',.71,[['Camp Chairs',['Aluminium Lounge Chair','Folding Camp Chair']],['Floor Seating',['Velvet Floor Seat','Arabic Majlis Set']]]],
+ ['Cookware',.74,[['Pots & Pans',['Enamel Pot Set','Cast Iron Skillet']],['Tea & Coffee Sets',['Tea & Coffee Bag VIP','Copper Dallah']]]],
+ ['Lighting & Power',.9,[['Lanterns',['Solar Lantern','LED Camping Light']],['Fans & Heaters',['Portable Fan','Gas Heater']]]],
+ ['Storage & Cabinets',.79,[['Steel Cabinets',['Steel Storage Cabinet','Tool Cabinet']],['Boxes & Bags',['Camping Box','Duffel Bag 90L']]]],
+ ['Car & Travel',.62,[['Car Accessories',['Car Seat Cover','Roof Bag']],['Travel Gear',['Travel Flask 2L','Cooler Bag 30L']]]]
+];
+const CATS=TREE.map(t=>t[0]);
+const PROD=[];TREE.forEach((t,ci)=>t[2].forEach((s,si)=>s[1].forEach(p=>PROD.push({p,ci,sub:s[0],ach:t[1],base:ri(10,44)*1e3,price:ri(12,320)}))));
+const SUBS=[...new Set(PROD.map(p=>p.sub))];
+const d3=[];
+PROD.forEach((pr,pi)=>BR.forEach(([b,bw],bi)=>MONTHS.forEach((m,mi)=>{
+  const bud=pr.base*bw/12*SEAS[mi]*(0.8+rnd()*.4);
+  const ach=Math.max(.15,BR_ACH[bi]*.45+pr.ach*.55+(rnd()-.5)*.3+(mi===4||mi===6?.1:0)-(mi===3?.22:0));
+  d3.push({pi,ci:pr.ci,sub:pr.sub,bi,mi,bud,act:bud*ach,ub:bud/pr.price,ua:bud*ach/pr.price*(0.92+rnd()*.2)});
+})));
+const sb=document.getElementById('d3Branch');sb.innerHTML='<option value="all">All branches</option>'+BR.map((b,i)=>`<option value="${i}">${b[0]}</option>`).join('');
+const sm=document.getElementById('d3Month');sm.innerHTML='<option value="all">All months</option>'+MONTHS.map((m,i)=>`<option value="${i}">${m}</option>`).join('');
+const sc=document.getElementById('d3Cat');sc.innerHTML='<option value="all">All categories</option>'+CATS.map((c,i)=>`<option value="${i}">${c}</option>`).join('');
+const stn=document.getElementById('d3TopN');
+[sb,sm,sc,stn].forEach(s=>s.onchange=()=>render.d3());
+const agg=(rows,key)=>{const m=new Map();rows.forEach(r=>{const k=key(r);let o=m.get(k);if(!o){o={bud:0,act:0,ub:0,ua:0,mon:MONTHS.map(()=>0),monU:MONTHS.map(()=>0)};m.set(k,o)}o.bud+=r.bud;o.act+=r.act;o.ub+=r.ub;o.ua+=r.ua;o.mon[r.mi]+=r.act;o.monU[r.mi]+=r.ua});return m};
+const achCol=p=>p>=.85?C.green:p>=.7?C.amber:C.red;
+const spark=(a,col)=>{const mx=Math.max(...a),mn=Math.min(...a);return`<svg width="110" height="24"><polyline fill="none" stroke="${col||C.teal}" stroke-width="1.7" points="${a.map((v,i)=>`${i*10.5+2},${22-(v-mn)/(mx-mn||1)*19}`).join(' ')}"/></svg>`};
+let selProd=null;
+function kpiBlock(b,a,label){const p=a/b;return`<div class="mkg"><div class="gauge sm"><canvas></canvas><div class="val"><b>${(p*100).toFixed(0)}%</b></div></div>
+  <div class="mkk"><div><span>Budget</span><b>${label(b)}</b></div><div><span>Sales</span><b>${label(a)}</b></div><div><span>Variance</span><b style="color:${C.red}">${label(b-a)}</b></div></div></div>`}
+render.d3=()=>{
+  const B=sb.value,M=sm.value,K=sc.value;
+  const base=d3.filter(r=>(B==='all'||r.bi==B)&&(K==='all'||r.ci==K));
+  const rows=base.filter(r=>M==='all'||r.mi==M);
+  const bud=sum(rows,r=>r.bud),act=sum(rows,r=>r.act),p=act/bud,ub=sum(rows,r=>r.ub),ua=sum(rows,r=>r.ua);
+  /* P1 */
+  document.getElementById('d3k').innerHTML=
+   `<div class="kpi" style="--c:${C.blue}"><span>Sales budget</span><b>${usd(bud)}</b><em>${M==='all'?'Jul 25 – May 26':MONTHS[M]}</em></div>
+    <div class="kpi" style="--c:${C.teal}"><span>Actual sales</span><b>${usd(act)}</b><em class="${p>=.85?'up':'dn'}">${pct(p)} achieved</em></div>
+    <div class="kpi" style="--c:${C.red}"><span>Variance (gap to budget)</span><b>${usd(bud-act)}</b><em>${pct(1-p)} below plan</em></div>
+    <div class="kpi" style="--c:${C.amber}"><span>Units sold vs. budget</span><b>${fmt(ua)}</b><em>${pct(ua/ub)} of ${fmt(ub)}</em></div>`;
+  gauge('d3gauge',p,achCol(p));document.getElementById('d3gv').textContent=(p*100).toFixed(0)+'%';
+  const bm=[...agg(base,r=>r.mi).entries()].sort((a,b)=>a[0]-b[0]).map(([,o])=>o.act/o.bud);
+  mk('d3line',{type:'line',data:{labels:MONTHS,datasets:[{label:'Achievement',data:bm.map(v=>+(v*100).toFixed(0)),borderColor:C.teal,backgroundColor:'rgba(45,212,191,.12)',fill:true,tension:.35,pointRadius:MONTHS.map((_,i)=>M==i?7:4),pointBackgroundColor:bm.map(achCol)},
+    {label:'Target',data:MONTHS.map(()=>100),borderColor:C.muted,borderDash:[5,5],pointRadius:0,borderWidth:1}]},
+    options:{plugins:{legend:{display:false},valLabels:{on:true,f:v=>v===100?'':v+'%'}},scales:{y:{suggestedMin:30,suggestedMax:125,ticks:{callback:v=>v+'%'}},x:{grid:{display:false}}}}});
+  const bAll=d3.filter(r=>(K==='all'||r.ci==K)&&(M==='all'||r.mi==M));
+  const br=[...agg(bAll,r=>r.bi).entries()].map(([bi,o])=>({n:BR[bi][0],bi,...o})).sort((a,b)=>b.act-a.act);
+  const hl=b=>B==='all'||b.bi==B;
+  mk('d3branch',{type:'bar',data:{labels:br.map(b=>b.n),datasets:[{label:'Budget',data:br.map(b=>b.bud),backgroundColor:'rgba(96,165,250,.3)',borderRadius:4},{label:'Sales',data:br.map(b=>b.act),backgroundColor:br.map(b=>hl(b)?C.teal:'rgba(45,212,191,.25)'),borderRadius:4}]},
+    options:{plugins:{legend:{position:'top',align:'end'},tooltip:{callbacks:{label:c=>c.dataset.label+': '+usd(c.raw)}}},scales:{y:{ticks:{callback:v=>fmt(v)},grace:'8%'},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+  const bs=[...br].sort((a,b)=>b.act/b.bud-a.act/a.bud);
+  mk('d3bach',{type:'bar',data:{labels:bs.map(b=>b.n),datasets:[{data:bs.map(b=>+(b.act/b.bud*100).toFixed(0)),backgroundColor:bs.map(b=>hl(b)?achCol(b.act/b.bud):'#1b2742'),borderRadius:5}]},
+    options:{plugins:{legend:{display:false},valLabels:{on:true,f:v=>v+'%'}},scales:{y:{display:false,max:125},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+  const T={bud:sum(br,b=>b.bud),act:sum(br,b=>b.act),ub:sum(br,b=>b.ub),ua:sum(br,b=>b.ua)};
+  document.getElementById('d3tbl').innerHTML=`<table><thead><tr><th>Branch</th><th>Budget (SAR)</th><th>Sales (SAR)</th><th>Achieved %</th><th></th><th>Budget units</th><th>Units sold</th><th>Units %</th></tr></thead><tbody>${
+    br.map(b=>`<tr class="${hl(b)?'':'dim'}"><td>${b.n}</td><td>${usd(b.bud)}</td><td>${usd(b.act)}</td><td>${pill(b.act/b.bud)}</td><td>${barCell(b.act/b.bud)}</td><td>${fmt(b.ub)}</td><td>${fmt(b.ua)}</td><td>${pill(b.ua/b.ub)}</td></tr>`).join('')
+  }</tbody><tfoot><tr><td>Total</td><td>${usd(T.bud)}</td><td>${usd(T.act)}</td><td>${pill(T.act/T.bud)}</td><td>${barCell(T.act/T.bud)}</td><td>${fmt(T.ub)}</td><td>${fmt(T.ua)}</td><td>${pill(T.ua/T.ub)}</td></tr></tfoot></table>`;
+  const bestM=bm.indexOf(Math.max(...bm)),worstM=bm.indexOf(Math.min(...bm));
+  document.getElementById('d3ins').innerHTML=`<div>🏆 <b>${bs[0].n}</b> leads with ${pct(bs[0].act/bs[0].bud)} of its budget achieved.</div>
+    <div>⚠️ <b>${bs[bs.length-1].n}</b> is furthest behind at ${pct(bs[bs.length-1].act/bs[bs.length-1].bud)}, a ${usd(bs[bs.length-1].bud-bs[bs.length-1].act)} gap.</div>
+    <div>📅 Best month: <b>${MONTHS[bestM]}</b> (${pct(bm[bestM])}). Weakest month: <b>${MONTHS[worstM]}</b> (${pct(bm[worstM])}).</div>`;
+  /* P2 */
+  const cRows=d3.filter(r=>(B==='all'||r.bi==B)&&(M==='all'||r.mi==M));
+  const ct=[...agg(cRows,r=>r.ci).entries()].map(([ci,o])=>({c:CATS[ci],ci,...o}));
+  const cs=[...ct].sort((x,y)=>y.act/y.bud-x.act/x.bud);
+  mk('d3cat',{type:'bar',data:{labels:cs.map(x=>x.c),datasets:[{data:cs.map(x=>+(x.act/x.bud*100).toFixed(0)),backgroundColor:cs.map(x=>K==='all'||K==x.ci?achCol(x.act/x.bud):'#1b2742'),borderRadius:5,barThickness:22}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false},valLabels:{on:true,f:v=>v+'%'}},scales:{x:{max:120,ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}});
+  const cm=[...ct].sort((a,b)=>b.act-a.act);
+  mk('d3mix',{type:'doughnut',data:{labels:cm.map(x=>x.c),datasets:[{data:cm.map(x=>x.act),backgroundColor:PAL,borderWidth:0}]},
+    options:{cutout:'62%',plugins:{legend:{position:'bottom',labels:{font:{size:10}}},tooltip:{callbacks:{label:c=>c.label+': '+usd(c.raw)}}}}});
+  /* P3 */
+  const ctv=[...ct].sort((a,b)=>b.bud-a.bud).filter(x=>K==='all'||x.ci==K);
+  const TT={bud:sum(ctv,x=>x.bud),act:sum(ctv,x=>x.act),ub:sum(ctv,x=>x.ub),ua:sum(ctv,x=>x.ua)};
+  const vr=(b,a,f)=>`<td>${f(b)}</td><td>${f(a)}</td><td style="color:${b-a>0?C.red:C.green}">${f(b-a)}</td><td>${pill(a/b)}</td>`;
+  document.getElementById('d3mat').innerHTML=`<table><thead><tr><th rowspan="2">Main category</th><th colspan="4" class="grp">Value (SAR)</th><th colspan="4" class="grp">Units</th></tr><tr><th>Budget</th><th>Sales</th><th>Variance</th><th>Achieved</th><th>Budget</th><th>Sales</th><th>Variance</th><th>Achieved</th></tr></thead><tbody>${
+    ctv.map(x=>`<tr><td>${x.c}</td>${vr(x.bud,x.act,usd)}${vr(x.ub,x.ua,fmt)}</tr>`).join('')}</tbody><tfoot><tr><td>Total</td>${vr(TT.bud,TT.act,usd)}${vr(TT.ub,TT.ua,fmt)}</tr></tfoot></table>`;
+  mk('d3combo',{type:'bar',data:{labels:ctv.map(x=>x.c),datasets:[{type:'bar',label:'Sales value',data:ctv.map(x=>x.act),backgroundColor:'rgba(96,165,250,.75)',borderRadius:4,yAxisID:'y'},{type:'line',label:'Units sold',data:ctv.map(x=>x.ua),borderColor:C.amber,backgroundColor:C.amber,tension:.3,yAxisID:'y1'}]},
+    options:{plugins:{legend:{position:'top',align:'end'}},scales:{y:{ticks:{callback:v=>usd(v)}},y1:{position:'right',grid:{display:false},ticks:{callback:v=>fmt(v)}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+  /* P4 */
+  const sAll=[...agg(base,r=>r.sub).entries()].map(([s,o])=>({s,...o}));
+  const sRows=[...agg(rows,r=>r.sub).entries()].map(([s,o])=>({s,...o,mon:sAll.find(z=>z.s===s).mon})).sort((a,b)=>b.act/b.bud-a.act/a.bud);
+  document.getElementById('d3sub').innerHTML=`<table><thead><tr><th rowspan="2">Sub-category</th><th colspan="6" class="grp">Value (SAR)</th><th colspan="3" class="grp">Units</th></tr><tr><th>Budget</th><th>Sales</th><th>Variance</th><th>Achieved</th><th>Trend</th><th>Top month</th><th>Budget</th><th>Sales</th><th>Achieved</th></tr></thead><tbody>${
+    sRows.map(x=>`<tr><td>${x.s}</td><td>${usd(x.bud)}</td><td>${usd(x.act)}</td><td style="color:${x.bud-x.act>0?C.red:C.green}">${usd(x.bud-x.act)}</td><td>${pill(x.act/x.bud)}</td><td>${spark(x.mon)}</td><td>${MONTHS[x.mon.indexOf(Math.max(...x.mon))]}</td><td>${fmt(x.ub)}</td><td>${fmt(x.ua)}</td><td>${pill(x.ua/x.ub)}</td></tr>`).join('')}</tbody></table>`;
+  const mAgg=[...agg(base,r=>r.mi).entries()].sort((a,b)=>a[0]-b[0]).map(e=>e[1]);
+  const lineCfg=(data,col,f)=>({type:'line',data:{labels:MONTHS,datasets:[{data,borderColor:col,backgroundColor:col+'22',fill:true,tension:.35,pointRadius:MONTHS.map((_,i)=>M==i?7:3),pointBackgroundColor:col}]},
+    options:{layout:{padding:{left:14,right:14}},plugins:{legend:{display:false},valLabels:{on:true,f},tooltip:{callbacks:{label:c=>f(c.raw)}}},scales:{y:{display:false,grace:'18%'},x:{grid:{display:false}}}}});
+  mk('d3sv',lineCfg(mAgg.map(o=>o.act),C.teal,fmt));
+  mk('d3su',lineCfg(mAgg.map(o=>o.ua),C.violet,fmt));
+  /* P5 */
+  document.getElementById('d3pv').innerHTML=kpiBlock(bud,act,usd);
+  document.getElementById('d3pu').innerHTML=kpiBlock(ub,ua,fmt);
+  document.querySelectorAll('#d3p5 .gauge.sm canvas').forEach((cv,i)=>{const pp=i?ua/ub:p;cv.id='d3g'+i;gauge(cv.id,pp,achCol(pp))});
+  const pRows=d3.filter(r=>(K==='all'||r.ci==K)&&(M==='all'||r.mi==M));
+  const pb=new Map();pRows.forEach(r=>{let o=pb.get(r.pi);if(!o){o={t:0,b:BR.map(()=>0)};pb.set(r.pi,o)}o.t+=r.act;o.b[r.bi]+=r.act});
+  const pl=[...pb.entries()].sort((a,b)=>b[1].t-a[1].t).slice(0,+stn.value);
+  const mxc=Math.max(...pl.flatMap(([,o])=>o.b));
+  const heat=v=>`background:rgba(45,212,191,${(0.06+v/mxc*.8).toFixed(2)})`;
+  document.getElementById('d3pb').innerHTML=`<table class="heat"><thead><tr><th>Product</th>${BR.map((b,i)=>`<th class="${B==='all'||B==i?'':'dimh'}">${b[0].replace(' Store','')}</th>`).join('')}<th>Total</th></tr></thead><tbody>${
+    pl.map(([pi,o])=>`<tr><td>${PROD[pi].p}</td>${o.b.map((v,i)=>`<td style="${heat(v)}" class="${B==='all'||B==i?'':'dim'}">${fmt(v)}</td>`).join('')}<td><b>${usd(o.t)}</b></td></tr>`).join('')}</tbody></table>`;
+  /* P6 */
+  const pm=new Map();base.forEach(r=>{let o=pm.get(r.pi);if(!o){o={mon:MONTHS.map(()=>0)};pm.set(r.pi,o)}o.mon[r.mi]+=r.act});
+  const plist=[...pm.entries()].map(([pi,o])=>({pi,mon:o.mon,t:M==='all'?sum(o.mon,v=>v):o.mon[M]})).sort((a,b)=>b.t-a.t).slice(0,20);
+  if(selProd!==null&&!plist.find(x=>x.pi===selProd))selProd=null;
+  const mxp=plist[0]?plist[0].t:1;
+  document.getElementById('d3prod').innerHTML=`<table class="click"><thead><tr><th>#</th><th style="text-align:left">Product</th><th>Sales</th><th></th><th>Top month</th><th>Trend</th></tr></thead><tbody>${
+    plist.map((x,i)=>`<tr data-pi="${x.pi}" class="${selProd===x.pi?'sel':''}"><td>${i+1}</td><td style="text-align:left">${PROD[x.pi].p}</td><td>${usd(x.t)}</td><td>${barCell(x.t/mxp,C.blue)}</td><td>${MONTHS[x.mon.indexOf(Math.max(...x.mon))]}</td><td>${spark(x.mon)}</td></tr>`).join('')}</tbody></table>`;
+  document.querySelectorAll('#d3prod tr[data-pi]').forEach(tr=>tr.onclick=()=>{const v=+tr.dataset.pi;selProd=selProd===v?null:v;render.d3()});
+  const series=selProd===null?mAgg.map(o=>o.act):pm.get(selProd).mon;
+  document.getElementById('d3pmt').textContent='Sales over months · '+(selProd===null?'all products':PROD[selProd].p);
+  mk('d3pm',lineCfg(series,C.blue,fmt));
+};
+
+/* =============== D4: Daily Transactions (Tania Water, fake data) =============== */
+const CH4=['Retail Branches','Wholesale','Van Sales','Key Accounts','E-commerce'];
+const CH4W=[.3,.27,.2,.13,.1];const CH4D=[.06,.14,.11,.04,.09];
+const BR4=['Exit 5','Exit 12','Jeddah','Old Airport','Hafar Al-Batin','Buraidah'];const BR4W=[.24,.2,.19,.16,.12,.09];
+const CAT4=['Gas & Stoves','Charcoal & Firewood','Tents & Shelters','Outdoor Furniture','Cookware','Lighting & Power'];
+const CAT4W=[.26,.2,.16,.14,.14,.1];const CAT4P=[38,22,240,95,60,45];
+const DOW=['Sat','Sun','Mon','Tue','Wed','Thu','Fri'];const DOWF=[1.05,.95,.92,.94,1.0,1.22,1.12];
+const day0=new Date(Date.UTC(2025,0,1)),dayN=new Date(Date.UTC(2026,4,25));
+const DAYS=[];for(let d=new Date(day0);d<=dayN;d=new Date(d.getTime()+864e5))DAYS.push(d);
+const d4=[];// per day × outlet(ch,br) × cat
+const OUT=[];CH4.forEach((c,ci)=>{if(ci===0)BR4.forEach((b,bi)=>OUT.push({ci,bi,w:CH4W[0]*BR4W[bi]}));else OUT.push({ci,bi:-1,w:CH4W[ci]})});
+DAYS.forEach((d,di)=>{const m=d.getUTCMonth(),y=d.getUTCFullYear(),dow=(d.getUTCDay()+1)%7,dom=d.getUTCDate();
+  const seas=1+.38*Math.sin((m-2.5)/12*2*Math.PI)+(m>=5&&m<=7?.1:0);const g=y===2026?1.17+di/510*.06:1;const pay=dom>=25||dom<=2?1.15:1;
+  const tot=185000*seas*g*DOWF[dow]*pay*(0.88+rnd()*.24);
+  OUT.forEach(o=>CAT4.forEach((c,ki)=>{const v=tot*o.w*CAT4W[ki]*(0.85+rnd()*.3)*(o.ci===2&&ki===4?2:1);
+    d4.push({di,y,m,dow,dom,ci:o.ci,bi:o.bi,ki,v,u:v/CAT4P[ki]/(o.ci===1||o.ci===2?.82:1),inv:v/(o.ci===1?1450:o.ci===2?2600:o.ci===3?95:o.ci===4?120:58),disc:CH4D[o.ci]})}))});
+const s4c=document.getElementById('d4Ch');s4c.innerHTML='<option value="all">All channels</option>'+CH4.map((c,i)=>`<option value="${i}">${c}</option>`).join('');
+const s4p=document.getElementById('d4Per'),s4m=document.getElementById('d4YM');[s4c,s4p,s4m].forEach(s=>s.onchange=()=>render.d4());
+const tot4=r=>{const v=sum(r,x=>x.v),u=sum(r,x=>x.u),inv=sum(r,x=>x.inv),dv=sum(r,x=>x.v*x.disc);return{v,u,inv,cust:inv*.78,disc:dv/(v+dv)}};
+const MON4=[];for(let y=2025;y<=2026;y++)for(let m=0;m<12;m++)if(y===2025||m<=4)MON4.push([y,m]);
+const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const kpis4=(t,extra)=>`<div class="kpi" style="--c:${C.teal}"><span>Sales (SAR)</span><b>${usd(t.v)}</b>${extra||''}</div>
+  <div class="kpi" style="--c:${C.blue}"><span>Units sold</span><b>${fmt(t.u)}</b><em>pieces</em></div>
+  <div class="kpi" style="--c:${C.violet}"><span>Invoices</span><b>${fmt(t.inv)}</b><em>transactions</em></div>
+  <div class="kpi" style="--c:${C.amber}"><span>Customers</span><b>${fmt(t.cust)}</b><em>unique buyers</em></div>
+  <div class="kpi" style="--c:${C.green}"><span>Avg. invoice</span><b>${usd(t.v/t.inv)}</b><em>per transaction</em></div>
+  <div class="kpi" style="--c:${C.red}"><span>Discount %</span><b>${pct(t.disc)}</b><em>of gross sales</em></div>`;
+const donut=(id,labels,data,f)=>mk(id,{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:PAL,borderWidth:0}]},
+  options:{cutout:'62%',plugins:{legend:{position:'right',labels:{font:{size:10}}},tooltip:{callbacks:{label:c=>`${c.label}: ${f(c.raw)} (${pct(c.raw/sum(c.dataset.data,v=>v))})`}}}}});
+render.d4=()=>{
+  const Ch=s4c.value,P=s4p.value,last=DAYS.length-1;
+  const inPer=r=>P==='all'?true:P==='ytd'?r.y===2026:P==='mtd'?(r.y===2026&&r.m===4):r.di>last-30;
+  const chOk=r=>Ch==='all'||r.ci==Ch;
+  const rows=d4.filter(r=>chOk(r)&&inPer(r));const T=tot4(rows);
+  /* P1 */
+  document.getElementById('d4k1').innerHTML=kpis4(T,`<em>${s4p.options[s4p.selectedIndex].text}</em>`);
+  const byCh=CH4.map((_,ci)=>rows.filter(r=>r.ci===ci));
+  donut('d4cv',CH4,byCh.map(r=>sum(r,x=>x.v)),usd);donut('d4cu',CH4,byCh.map(r=>sum(r,x=>x.u)),fmt);
+  const dd=new Map();rows.forEach(r=>dd.set(r.di,(dd.get(r.di)||0)+r.v));const dk=[...dd.keys()].sort((a,b)=>a-b);
+  mk('d4day',{type:'line',data:{labels:dk.map(i=>DAYS[i].toISOString().slice(5,10)),datasets:[{data:dk.map(k=>dd.get(k)),borderColor:C.teal,backgroundColor:'rgba(45,212,191,.12)',fill:true,pointRadius:0,tension:.3,borderWidth:1.5}]},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>usd(c.raw)}}},scales:{y:{ticks:{callback:v=>usd(v)}},x:{grid:{display:false},ticks:{maxTicksLimit:6}}}}});
+  const allCh=d4.filter(chOk);
+  const mv=MON4.map(([y,m])=>{const r=allCh.filter(x=>x.y===y&&x.m===m);return[sum(r,x=>x.v),sum(r,x=>x.u)]});
+  mk('d4mon',{type:'bar',data:{labels:MON4.map(([y,m])=>MN[m]+' '+String(y).slice(2)),datasets:[{type:'bar',label:'Sales (SAR)',data:mv.map(x=>x[0]),backgroundColor:MON4.map(([y])=>y===2026?C.teal:'rgba(96,165,250,.55)'),borderRadius:4,yAxisID:'y'},{type:'line',label:'Units',data:mv.map(x=>x[1]),borderColor:C.amber,backgroundColor:C.amber,tension:.35,pointRadius:2,yAxisID:'y1'}]},
+    options:{plugins:{legend:{position:'top',align:'end'},tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.datasetIndex?fmt(c.raw):usd(c.raw))}}},scales:{y:{ticks:{callback:v=>usd(v)}},y1:{position:'right',grid:{display:false},ticks:{callback:v=>fmt(v)}},x:{grid:{display:false}}}}});
+  /* P2 retail branches */
+  const rr=d4.filter(r=>r.ci===0&&inPer(r));const RT=tot4(rr);
+  document.getElementById('d4k2').innerHTML=kpis4(RT,'<em>retail branches only</em>');
+  const bb=BR4.map((_,bi)=>rr.filter(r=>r.bi===bi));
+  const bars=(id,data,f,col)=>{const o=BR4.map((b,i)=>({b,v:data[i]})).sort((a,b)=>b.v-a.v);const t=sum(o,x=>x.v);
+    mk(id,{type:'bar',data:{labels:o.map(x=>x.b),datasets:[{data:o.map(x=>x.v),backgroundColor:col,borderRadius:5,barThickness:20}]},options:{indexAxis:'y',plugins:{legend:{display:false},valLabels:{on:true,f:v=>f(v)+' ('+(v/t*100).toFixed(1)+'%)'}},scales:{x:{display:false,grace:'30%'},y:{grid:{display:false}}}}})};
+  bars('d4bv',bb.map(r=>sum(r,x=>x.v)),usd,C.teal);bars('d4bu',bb.map(r=>sum(r,x=>x.u)),fmt,C.violet);
+  const cb=CAT4.map((c,ki)=>BR4.map((_,bi)=>sum(bb[bi].filter(r=>r.ki===ki),x=>x.v)));const mxb=Math.max(...cb.flat());
+  document.getElementById('d4bt').innerHTML=`<table class="heat"><thead><tr><th>Category</th>${BR4.map(b=>`<th>${b}</th>`).join('')}<th>Total</th></tr></thead><tbody>${
+    cb.map((row,ki)=>`<tr><td>${CAT4[ki]}</td>${row.map(v=>`<td style="background:rgba(96,165,250,${(0.06+v/mxb*.75).toFixed(2)})">${usd(v)}</td>`).join('')}<td><b>${usd(sum(row,v=>v))}</b></td></tr>`).join('')}</tbody></table>`;
+  /* P3 categories */
+  const ck=CAT4.map((c,ki)=>{const r=rows.filter(x=>x.ki===ki);return{c,v:sum(r,x=>x.v),u:sum(r,x=>x.u)}}).sort((a,b)=>b.v-a.v);
+  mk('d4cat',{type:'bar',data:{labels:ck.map(x=>x.c),datasets:[{data:ck.map(x=>x.v),backgroundColor:ck.map((_,i)=>PAL[i]),borderRadius:5,barThickness:26}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false},valLabels:{on:true,f:usd}},scales:{x:{display:false,grace:'15%'},y:{grid:{display:false}}}}});
+  document.getElementById('d4ct').innerHTML=`<table><thead><tr><th>Category</th><th>Sales</th><th>Share</th><th>Units</th><th>Avg price</th></tr></thead><tbody>${
+    ck.map(x=>`<tr><td>${x.c}</td><td>${usd(x.v)}</td><td>${pct(x.v/T.v)}</td><td>${fmt(x.u)}</td><td>SAR ${(x.v/x.u).toFixed(2)}</td></tr>`).join('')}</tbody></table>`;
+  /* P4 weekdays */
+  document.getElementById('d4k4').innerHTML=kpis4(T,`<em>${s4p.options[s4p.selectedIndex].text}</em>`);
+  const nd=new Set(rows.map(r=>r.di));const wd=DOW.map((_,w)=>{const r=rows.filter(x=>x.dow===w);const n=[...nd].filter(i=>(DAYS[i].getUTCDay()+1)%7===w).length||1;return[sum(r,x=>x.v)/n,sum(r,x=>x.u)/n]});
+  mk('d4wd',{type:'bar',data:{labels:DOW,datasets:[{label:'Avg sales',data:wd.map(x=>x[0]),backgroundColor:wd.map(x=>x[0]===Math.max(...wd.map(z=>z[0]))?C.amber:C.teal),borderRadius:5}]},
+    options:{plugins:{legend:{display:false},valLabels:{on:true,f:fmt}},scales:{y:{display:false,grace:'15%'},x:{grid:{display:false}}}}});
+  const hd=new Map();d4.filter(chOk).forEach(r=>{if(r.di>last-70)hd.set(r.di,(hd.get(r.di)||0)+r.v)});
+  const hk=[...hd.keys()].sort((a,b)=>a-b);const hmx=Math.max(...hd.values()),hmn=Math.min(...hd.values());
+  const first=hk[0]-((DAYS[hk[0]].getUTCDay()+1)%7);let html='<div class="hm"><div class="hmrow"><span></span>';
+  const weeks=Math.ceil((last-first+1)/7);for(let w=0;w<weeks;w++){const d=DAYS[Math.max(first+w*7,0)];html+=`<span class="hml">${d.getUTCDate()} ${MN[d.getUTCMonth()]}</span>`}html+='</div>';
+  DOW.forEach((n,w)=>{html+=`<div class="hmrow"><span class="hml">${n}</span>`;for(let k=0;k<weeks;k++){const di=first+k*7+w;const v=hd.get(di);
+    html+=v===undefined?'<i class="e"></i>':`<i title="${DAYS[di].toISOString().slice(0,10)}: ${usd(v)}" style="background:rgba(45,212,191,${(0.12+(v-hmn)/(hmx-hmn)*.88).toFixed(2)})"></i>`}html+='</div>'});
+  document.getElementById('d4heat').innerHTML=html+'</div>';
+  /* P5 day of month */
+  const dm=Array.from({length:31},(_,i)=>{const r=rows.filter(x=>x.dom===i+1);const n=new Set(r.map(x=>x.di)).size||1;return[sum(r,x=>x.v)/n,sum(r,x=>x.u)/n]});
+  mk('d4dom',{type:'bar',data:{labels:dm.map((_,i)=>i+1),datasets:[{type:'bar',label:'Avg sales (SAR)',data:dm.map(x=>x[0]),backgroundColor:dm.map((_,i)=>i>=24||i<=1?C.amber:'rgba(45,212,191,.75)'),borderRadius:3,yAxisID:'y'},{type:'line',label:'Avg units',data:dm.map(x=>x[1]),borderColor:C.violet,tension:.35,pointRadius:2,yAxisID:'y1'}]},
+    options:{plugins:{legend:{position:'top',align:'end'},tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.datasetIndex?fmt(c.raw):usd(c.raw))}}},scales:{y:{ticks:{callback:v=>usd(v)}},y1:{position:'right',grid:{display:false},ticks:{callback:v=>fmt(v)}},x:{grid:{display:false}}}}});
+  /* P6 YoY */
+  const YM=+s4m.value;const maxDom=YM===4?25:31;
+  const yr=y=>d4.filter(r=>chOk(r)&&r.y===y&&r.m===YM&&r.dom<=maxDom);const A=tot4(yr(2026)),Bq=tot4(yr(2025));
+  const gr=(a,b)=>{const g=a/b-1;return`<em class="${g>=0?'up':'dn'}">${g>=0?'▲':'▼'} ${pct(Math.abs(g))} vs ${MN[YM]} 2025</em>`};
+  document.getElementById('d4k6').innerHTML=`<div class="kpi" style="--c:${C.teal}"><span>Sales ${MN[YM]} 2026</span><b>${usd(A.v)}</b>${gr(A.v,Bq.v)}</div>
+   <div class="kpi" style="--c:${C.blue}"><span>Units ${MN[YM]} 2026</span><b>${fmt(A.u)}</b>${gr(A.u,Bq.u)}</div>
+   <div class="kpi" style="--c:${C.amber}"><span>Customers ${MN[YM]} 2026</span><b>${fmt(A.cust)}</b>${gr(A.cust,Bq.cust)}</div>
+   <div class="kpi" style="--c:${C.red}"><span>Discount % ${MN[YM]} 2026</span><b>${pct(A.disc)}</b><em>${pct(Bq.disc)} in 2025</em></div>`;
+  const dser=y=>Array.from({length:maxDom},(_,i)=>sum(yr(y).filter(r=>r.dom===i+1),x=>x.v));
+  mk('d4yoy',{type:'line',data:{labels:Array.from({length:maxDom},(_,i)=>i+1),datasets:[{label:'2026',data:dser(2026),borderColor:C.teal,backgroundColor:'rgba(45,212,191,.12)',fill:true,tension:.3,pointRadius:2},{label:'2025',data:dser(2025),borderColor:C.muted,borderDash:[5,4],tension:.3,pointRadius:0}]},
+    options:{plugins:{legend:{position:'top',align:'end'},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': '+usd(c.raw)}}},scales:{y:{ticks:{callback:v=>usd(v)}},x:{grid:{display:false},title:{display:true,text:'Day of month'}}}}});
+  /* P7 YoY channels & categories (Jan 1 – May 25) */
+  const ytd=y=>d4.filter(r=>r.y===y&&(r.m<4||(r.m===4&&r.dom<=25)));const y6=ytd(2026),y5=ytd(2025);
+  const yoyBar=(id,labels,key,filt)=>{const a=labels.map((_,i)=>sum(y6.filter(r=>r[key]===i&&filt(r)),x=>x.v)),b=labels.map((_,i)=>sum(y5.filter(r=>r[key]===i&&filt(r)),x=>x.v));
+    mk(id,{type:'bar',data:{labels,datasets:[{label:'2025',data:b,backgroundColor:'rgba(138,155,189,.45)',borderRadius:4},{label:'2026',data:a,backgroundColor:C.teal,borderRadius:4}]},
+      options:{plugins:{legend:{position:'top',align:'end'},tooltip:{callbacks:{label:c=>c.dataset.label+': '+usd(c.raw),afterBody:it=>'Growth: '+pct(a[it[0].dataIndex]/b[it[0].dataIndex]-1)}},
+        valLabels:{on:true,f:v=>{const i=a.indexOf(v);return i>=0?'+'+((a[i]/b[i]-1)*100).toFixed(0)+'%':''}}},scales:{y:{ticks:{callback:v=>usd(v)},grace:'10%'},x:{grid:{display:false},ticks:{font:{size:10}}}}}})};
+  yoyBar('d4ych',CH4,'ci',()=>true);yoyBar('d4ycat',CAT4,'ki',chOk);
+};
+
+/* =============== D1: Summer Purchase Order =============== */
+const D1N=['Portable Fan Rechargeable','Camping Cooler 45L','Insulated Water Jug 10L','Beach Umbrella 2.4m','Folding Camp Chair','Pop-up Shade Tent 3×3','Solar Lantern','Cooler Bag 30L','Outdoor Misting Fan','Hydration Backpack','Picnic Table Set','Hammock Double','Sun Shade Sail','LED String Lights','Ice Packs (4-pack)','Portable Shower 20L','Steel Water Bottle 1L','Folding Lounger','Mosquito Net Tent','Kids Pool 2m','Garden Hose Set 20m','Car Sunshade','Thermal Flask 2L','Mini Fridge 12V'];
+const d1=D1N.map((n,i)=>{const ly=ri(80,2400),ord=Math.round(ly*(0.35+rnd()*1.1)/10)*10||50,cost=ri(4,95),price=+(cost*(1.6+rnd()*.9)).toFixed(2);
+  const exp=Math.round(ly*(0.95+rnd()*.35));return{n,sku:'DL-'+(4100+i*37),yr:[2023,2024,2025][i%3],ly,ord,cost,price,exp,stock:ri(0,Math.round(ly*.25)),
+  split:[.18,.3,.32,.2].map(v=>v*(0.8+rnd()*.4))}});
+const d1m=document.getElementById('d1Month'),d1y=document.getElementById('d1Year');[d1m,d1y].forEach(s=>s.onchange=()=>render.d1());
+render.d1=()=>{
+  const M=d1m.value,Y=d1y.value;
+  const rows=d1.filter(r=>Y==='all'||r.yr==Y).map(r=>{const ss=r.split.reduce((a,b)=>a+b),f=M==='all'?1:r.split[M]/ss;
+    const exp=Math.round(r.exp*f),ord=Math.round(r.ord*f),lost=Math.max(0,Math.round(exp*0.35-r.stock*f));
+    return{...r,exp,ord,lost,stockf:Math.round(r.stock*f),gap:ord-exp,rev:Math.min(ord,exp)*r.price,tc:ord*r.cost,lyf:Math.round(r.ly*f)}});
+  const T=k=>sum(rows,r=>r[k]);
+  const ord=T('ord'),exp=T('exp'),tc=T('tc'),rev=T('rev'),stock=T('stockf'),lost=T('lost');
+  document.getElementById('d1k').innerHTML=
+   `<div class="kpi" style="--c:${C.blue}"><span>Products</span><b>${rows.length}</b><em>SKUs on the order</em></div>
+    <div class="kpi" style="--c:${C.violet}"><span>Units ordered</span><b>${fmt(ord)}</b><em>${pct(ord/exp)} of demand</em></div>
+    <div class="kpi" style="--c:${C.amber}"><span>Purchase cost</span><b>${usd(tc)}</b><em>landed cost</em></div>
+    <div class="kpi" style="--c:${C.teal}"><span>Current stock</span><b>${fmt(stock)}</b><em>units on hand</em></div>
+    <div class="kpi" style="--c:${C.green}"><span>Potential revenue</span><b>${usd(rev)}</b><em class="up">${pct((rev-tc)/rev)} gross margin</em></div>
+    <div class="kpi" style="--c:${C.red}"><span>Sales lost before arrival</span><b>${fmt(lost)}</b><em class="dn">units at risk</em></div>`;
+  const bo=(id,l,a,cols,f)=>mk(id,{type:'bar',data:{labels:l,datasets:[{data:a,backgroundColor:cols,borderRadius:6,barPercentage:.55}]},options:{plugins:{legend:{display:false},valLabels:{on:true,f}},scales:{y:{display:false,grace:'15%'},x:{grid:{display:false}}}}});
+  bo('d1c1',['Units ordered','Expected demand'],[ord,exp],[C.violet,C.blue],fmt);
+  bo('d1c2',['Purchase cost','Expected revenue'],[tc,rev],[C.amber,C.green],usd);
+  bo('d1c3',['Current stock','Lost before arrival'],[stock,lost],[C.teal,C.red],fmt);
+  const s=[...rows].sort((a,b)=>a.gap-b.gap);
+  document.getElementById('d1tbl').innerHTML=`<table><thead><tr><th>Product</th><th>SKU</th><th>Ordered</th><th>Expected demand</th><th>Gap (units)</th><th>Coverage</th><th></th><th>Unit cost</th><th>Order cost</th><th>Expected revenue</th></tr></thead><tbody>${
+    s.map(r=>{const cv=r.ord/r.exp;return`<tr><td>${r.n}</td><td style="color:${C.muted}">${r.sku}</td><td>${num(r.ord)}</td><td>${num(r.exp)}</td><td style="color:${r.gap<0?C.red:C.green}">${r.gap>0?'+':''}${num(r.gap)}</td><td>${pill(Math.min(cv,1.2))}</td><td>${barCell(cv)}</td><td>SAR ${r.cost}</td><td>${usd(r.tc)}</td><td>${usd(r.rev)}</td></tr>`}).join('')
+  }</tbody><tfoot><tr><td>Total</td><td></td><td>${num(ord)}</td><td>${num(exp)}</td><td>${num(ord-exp)}</td><td>${pill(ord/exp)}</td><td></td><td></td><td>${usd(tc)}</td><td>${usd(rev)}</td></tr></tfoot></table>`;
+  const under=rows.filter(r=>r.gap<0),over=rows.filter(r=>r.ord>r.exp*1.15);
+  document.getElementById('d1ins').innerHTML=`<div>📉 <b>${under.length}</b> of ${rows.length} SKUs are ordered below expected demand, a shortfall of ${fmt(-sum(under,r=>r.gap))} units.</div>
+    <div>📦 <b>${over.length}</b> SKUs are over-ordered by more than 15%. Consider trimming them to free ${usd(sum(over,r=>(r.ord-r.exp)*r.cost))} of cash.</div>
+    <div>💰 Each SAR 1 of purchase cost is expected to return <b>SAR ${(rev/tc).toFixed(2)}</b> in revenue.</div>`;
+  mk('d1sc',{type:'scatter',data:{datasets:[{data:rows.map(r=>({x:r.lyf,y:r.ord,n:r.n})),backgroundColor:rows.map(r=>r.ord<r.lyf?C.red:C.teal),pointRadius:6,pointHoverRadius:8},
+    {type:'line',data:[{x:0,y:0},{x:Math.max(...rows.map(r=>r.lyf)),y:Math.max(...rows.map(r=>r.lyf))}],borderColor:C.muted,borderDash:[5,5],pointRadius:0,borderWidth:1}]},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw.n?`${c.raw.n}: ordered ${num(c.raw.y)} vs LY ${num(c.raw.x)}`:''}}},scales:{x:{title:{display:true,text:'Last season units sold'}},y:{title:{display:true,text:'Units ordered'}}}}});
+  const y=[...rows].sort((a,b)=>(a.ord-a.lyf)-(b.ord-b.lyf));
+  document.getElementById('d1tbl2').innerHTML=`<table><thead><tr><th>Product</th><th>Ordered</th><th>LY sold</th><th>Diff vs LY</th><th>Diff %</th><th>Stock</th></tr></thead><tbody>${
+    y.map(r=>{const d=r.ord-r.lyf;return`<tr><td>${r.n}</td><td>${num(r.ord)}</td><td>${num(r.lyf)}</td><td style="color:${d<0?C.red:C.green}">${d>0?'+':''}${num(d)}</td><td style="color:${d<0?C.red:C.green}">${pct(d/r.lyf)}</td><td>${num(r.stockf)}</td></tr>`}).join('')}</tbody></table>`;
+};
+
+/* =============== D2: Inventory Provision =============== */
+const D2C=['Cookware','Grills & Fire Starters','Imported Textiles','Garden & Camping','Electricals & Lighting','Mattresses & Floor Mats','Car Accessories','Fishing Gear','Tents & Ropes','Heritage Décor'];
+const CH=['Retail','Wholesale','E-commerce'];const CHW=[.74,.16,.1];
+const d2=[];D2C.forEach((c,ci)=>CH.forEach((h,hi)=>{const alloc=ri(40,140)*1e3*CHW[hi]*(1-ci*.05);const st=.22+rnd()*.25+(hi===0?.06:0);const price=ri(14,40);const pd=.2+rnd()*.15,ad=pd+(rnd()-.35)*.18;
+  const neg=alloc*(.25+rnd()*.25);d2.push({ci,hi,alloc,sold:alloc*st,price,pd,ad,cost:price*(1-pd)*.86,neg,negSold:neg*(.15+rnd()*.15)})}));
+const d2s=document.getElementById('d2Ch');d2s.onchange=()=>render.d2();
+const SKUN=['Enamel Pot Set','Cast Iron Skillet','Charcoal Starter','Embroidered Cushion','Folding Grill','LED Work Light','Floor Mattress 2m','Car Seat Cover','Fishing Rod Kit','Guy Rope 20m','Copper Dallah','Tent Peg Set','Camping Kettle','Rug 2×3m','Solar Panel 50W','Wind Lantern'];
+const d2sku=SKUN.map((n,i)=>{const q=ri(20,900),uc=ri(8,120),rev=q*uc*(0.55+rnd()*.4);return{n,sku:'DL-'+(7300+i*53),ci:i%10,q,rev,cost:q*uc}});
+render.d2=()=>{
+  const H=d2s.value;const rows=d2.filter(r=>H==='all'||r.hi==H);
+  const al=sum(rows,r=>r.alloc),so=sum(rows,r=>r.sold),gross=sum(rows,r=>r.sold*r.price),net=sum(rows,r=>r.sold*r.price*(1-r.ad)),cost=sum(rows,r=>r.sold*r.cost);
+  document.getElementById('d2k').innerHTML=
+   `<div class="kpi" style="--c:${C.blue}"><span>SKUs in program</span><b>${H==='all'?'3,280':num(3280*CHW[H]*1.6)}</b><em>allocated items</em></div>
+    <div class="kpi" style="--c:${C.violet}"><span>Allocated units</span><b>${fmt(al)}</b><em>clearance stock</em></div>
+    <div class="kpi" style="--c:${C.teal}"><span>Units sold</span><b>${fmt(so)}</b><em class="up">${pct(so/al)} sell-through</em></div>
+    <div class="kpi" style="--c:${C.amber}"><span>Remaining units</span><b>${fmt(al-so)}</b><em>${pct(1-so/al)} still on hand</em></div>
+    <div class="kpi" style="--c:${C.green}"><span>Net revenue</span><b>${usd(net)}</b><em>after discounts</em></div>
+    <div class="kpi" style="--c:${net-cost>=0?C.green:C.red}"><span>Margin (rev − cost)</span><b>${usd(net-cost)}</b><em class="${net-cost>=0?'up':'dn'}">${pct((net-cost)/net)}</em></div>`;
+  const cat=D2C.map((c,ci)=>{const r=rows.filter(x=>x.ci===ci);return{c,s:sum(r,x=>x.sold),rem:sum(r,x=>x.alloc-x.sold),neg:sum(r,x=>x.neg),ns:sum(r,x=>x.negSold),m:sum(r,x=>x.sold*(x.price*(1-x.ad)-x.cost))}}).sort((a,b)=>b.s-a.s);
+  mk('d2cat',{type:'bar',data:{labels:cat.map(x=>x.c),datasets:[{data:cat.map(x=>x.s),backgroundColor:cat.map((_,i)=>`rgba(45,212,191,${1-i*.07})`),borderRadius:5,barThickness:18}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false},valLabels:{on:true,f:fmt}},scales:{x:{display:false,grace:'12%'},y:{grid:{display:false}}}}});
+  gauge('d2gauge',so/al,C.teal);document.getElementById('d2gv').textContent=pct(so/al);
+  const ch=CH.map((h,hi)=>sum(d2.filter(r=>r.hi===hi),r=>r.sold*r.price*(1-r.ad)));
+  mk('d2ch',{type:'doughnut',data:{labels:CH,datasets:[{data:ch,backgroundColor:CH.map((_,i)=>H==='all'||H==i?[C.teal,C.blue,C.violet][i]:'#1b2742'),borderWidth:0}]},
+    options:{cutout:'65%',plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:c=>c.label+': '+usd(c.raw)}}}}});
+  mk('d2net',{type:'bar',data:{labels:['Gross sales','Discounts','Net sales'],datasets:[{data:[gross,gross-net,net],backgroundColor:[C.blue,C.red,C.green],borderRadius:6,barPercentage:.6}]},
+    options:{plugins:{legend:{display:false},valLabels:{on:true,f:usd}},scales:{y:{display:false,grace:'15%'},x:{grid:{display:false}}}}});
+  const dc=CH.map((h,hi)=>{const r=d2.filter(x=>x.hi===hi);const g=sum(r,x=>x.sold*x.price);return[sum(r,x=>x.sold*x.price*x.pd)/g,sum(r,x=>x.sold*x.price*x.ad)/g]});
+  mk('d2disc',{type:'bar',data:{labels:CH,datasets:[{label:'Planned',data:dc.map(d=>+(d[0]*100).toFixed(1)),backgroundColor:'rgba(96,165,250,.45)',borderRadius:4},{label:'Actual',data:dc.map(d=>+(d[1]*100).toFixed(1)),backgroundColor:dc.map(d=>d[1]>d[0]?C.red:C.green),borderRadius:4}]},
+    options:{plugins:{legend:{position:'top',align:'end'},valLabels:{on:true,f:v=>v+'%'}},scales:{y:{display:false,grace:'20%'},x:{grid:{display:false}}}}});
+  const over=CH.filter((_,i)=>dc[i][1]>dc[i][0]);
+  document.getElementById('d2ins').innerHTML=`<div>🔥 <b>${cat[0].c}</b> clears fastest, with ${fmt(cat[0].s)} units sold.</div>
+    <div>🐢 <b>${cat[cat.length-1].c}</b> is the slowest mover. It's a candidate for a deeper markdown or bundling.</div>
+    <div>${over.length?'⚠️ Actual discount is above plan in <b>'+over.join(', ')+'</b>.':'✅ Actual discounts are within the planned provision in every channel.'}</div>`;
+  // negative stock
+  const ng=sum(rows,r=>r.neg),ns=sum(rows,r=>r.negSold);
+  const loss=CH.map((h,hi)=>-sum(d2.filter(r=>r.hi===hi),r=>r.neg*r.cost*.42));
+  document.getElementById('d2k2').innerHTML=`<div class="kpi" style="--c:${C.red}"><span>Negative-margin units</span><b>${fmt(ng)}</b><em>flagged stock</em></div>
+    <div class="kpi" style="--c:${C.teal}"><span>Sold</span><b>${fmt(ns)}</b><em>${pct(ns/ng)} cleared</em></div>
+    <div class="kpi" style="--c:${C.amber}"><span>Remaining</span><b>${fmt(ng-ns)}</b><em>${pct(1-ns/ng)} left</em></div>
+    <div class="kpi" style="--c:${C.red}"><span>Expected total loss</span><b>${usd(H==='all'?sum(loss,v=>v):loss[H])}</b><em class="dn">if sold at current prices</em></div>`;
+  const nc=[...cat].sort((a,b)=>b.neg-a.neg);
+  mk('d2neg',{type:'bar',data:{labels:nc.map(x=>x.c),datasets:[{label:'Sold',data:nc.map(x=>x.ns),backgroundColor:C.teal,borderRadius:3},{label:'Remaining',data:nc.map(x=>x.neg-x.ns),backgroundColor:'rgba(248,113,113,.7)',borderRadius:3}]},
+    options:{indexAxis:'y',plugins:{legend:{position:'top',align:'end'},tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmt(c.raw)}}},scales:{x:{stacked:true,ticks:{callback:v=>fmt(v)}},y:{stacked:true,grid:{display:false}}}}});
+  mk('d2loss',{type:'bar',data:{labels:CH,datasets:[{data:loss,backgroundColor:CH.map((_,i)=>H==='all'||H==i?C.red:'#3a2030'),borderRadius:6,barPercentage:.5}]},
+    options:{plugins:{legend:{display:false},valLabels:{on:true,f:usd}},scales:{y:{ticks:{callback:v=>usd(v)}},x:{grid:{display:false}}}}});
+  // below cost
+  const f=H==='all'?1:CHW[H];
+  const sk=d2sku.map(s=>({...s,q:s.q*f,rev:s.rev*f,cost:s.cost*f})).sort((a,b)=>(a.rev-a.cost)-(b.rev-b.cost));
+  const lc=D2C.map((c,ci)=>({c,m:sum(sk.filter(x=>x.ci===ci),x=>x.rev-x.cost)})).filter(x=>x.m<0).sort((a,b)=>a.m-b.m);
+  mk('d2mar',{type:'bar',data:{labels:lc.map(x=>x.c),datasets:[{data:lc.map(x=>x.m),backgroundColor:C.red,borderRadius:4,barThickness:16}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>usd(c.raw)}}},scales:{x:{ticks:{callback:v=>usd(v)}},y:{grid:{display:false}}}}});
+  document.getElementById('d2tbl').innerHTML=`<table><thead><tr><th>Product</th><th>SKU</th><th>Units</th><th>Net revenue</th><th>Cost of sold</th><th>Margin</th><th>Margin %</th><th>Avg unit cost</th></tr></thead><tbody>${
+    sk.map(s=>`<tr><td>${s.n}</td><td style="color:${C.muted}">${s.sku}</td><td>${num(s.q)}</td><td>${usd(s.rev)}</td><td>${usd(s.cost)}</td><td style="color:${C.red}">${usd(s.rev-s.cost)}</td><td><span class="pill pr">${pct((s.rev-s.cost)/s.rev)}</span></td><td>SAR ${(s.cost/s.q).toFixed(2)}</td></tr>`).join('')}</tbody></table>`;
+};
+
+/* =============== D5: Tania Sales Suite (fake data) =============== */
+const REG5=['Riyadh','Dammam','Jeddah','Al Kharj','Qassim','Al Hassa'];const REG5W=[.47,.26,.14,.05,.045,.035];
+const BU5=['Carton','Gallon'];
+const CH5=[['Home Delivery',[0,1],.2],['Direct Distribution',[0,1],.38],['Companies',[0,1],.07],['Key Account',[0],.09],['E-Commerce',[0],.06],['HORECA',[0,1],.03],['Catering',[0,1],.05],['Wholesale',[0],.03],['Agents',[0,1],.06]];
+const BUW={0:.49,1:.51};const DROP=[[15,8],[31,18],[30,26],[79],[107],[63,12],[60,40],[144],[90,60]];
+const TODAY5=new Date(Date.UTC(2026,10,23));
+const days5=[];for(let d=new Date(Date.UTC(2025,10,1));d<=new Date(Date.UTC(2025,10,30));d=new Date(d.getTime()+864e5))days5.push(d);
+for(let d=new Date(Date.UTC(2026,0,1));d<=TODAY5;d=new Date(d.getTime()+864e5))days5.push(d);
+const d5=[];const CHG=[0.96,0.98,0.8,1.55,0.98,0.95,1.3,1.9,0.75];
+days5.forEach((d,di)=>{const y=d.getUTCFullYear(),m=d.getUTCMonth(),dom=d.getUTCDate(),dow=d.getUTCDay();const fri=dow===5;
+  const today=+d===+TODAY5;const g=y===2026?1.14:1;const seas=1+.3*Math.sin((m-3)/12*2*Math.PI);
+  const tot=fri?0:1.15e6*seas*g*(0.85+rnd()*.3)*(dow===6?1.08:1)*(today?.2:1);
+  REG5.forEach((r,ri)=>CH5.forEach(([c,bus,w],ci)=>bus.forEach((bu,k)=>{
+    const v=tot*REG5W[ri]*w*BUW[bu]/(bus.length===1?.49:1)*(0.7+rnd()*.6)*(y===2026?CHG[ci]/1.0:1);
+    const price=bu===0?13.5:6.2;const vol=v/price;const drop=DROP[ci][k]*(0.85+rnd()*.3);const bills=vol/drop;
+    d5.push({di,y,m,dom,dow,today,ri,ci,bu,v,vol,bills,disc:v*(ci===4?.12:ci===8?.09:.035),td:Math.max(v>0?1:0,bills/(ci===1||ci===0?28:6))});
+  })))});
+const s5p=document.getElementById('d5Per'),s5b=document.getElementById('d5BU'),s5r=document.getElementById('d5Reg');
+s5r.innerHTML='<option value="all">All regions</option>'+REG5.map((r,i)=>`<option value="${i}">${r}</option>`).join('');
+[s5p,s5b,s5r].forEach(s=>s.onchange=()=>render.d5());
+const T5=r=>{const v=sum(r,x=>x.v),vol=sum(r,x=>x.vol),b=sum(r,x=>x.bills),td=sum(r,x=>x.td),ds=sum(r,x=>x.disc);return{v,vol,b,td,disc:ds,dp:ds/(v+ds),truck:v/(td||1),drop:vol/(b||1)}};
+const delta=(a,b,lab)=>{if(!b)return'';const g=a/b;return`<em class="${g>=1?'up':'dn'}">${g>=1?'▲':'▼'} ${pct(Math.abs(g-1))} vs ${lab}</em>`};
+const isMTD=r=>r.y===2026&&r.m===10,isLYMTD=r=>r.y===2025&&r.m===10&&r.dom<=23;
+const WD_NOV=26;// working days in month
+render.d5=()=>{
+  const P=s5p.value,BU=s5b.value,R=s5r.value;
+  const flt=r=>(BU==='all'||r.bu==BU)&&(R==='all'||r.ri==R);
+  const base=d5.filter(flt);
+  const inP=r=>P==='today'?r.today:P==='mtd'?isMTD(r):r.y===2026;
+  const cur=base.filter(inP),A=T5(cur);
+  let cmp,lab;
+  if(P==='today'){cmp=T5(base.filter(r=>r.y===2026&&r.m===10&&r.dom===22));lab='yesterday'}
+  else if(P==='mtd'){cmp=T5(base.filter(isLYMTD));lab='last year'}
+  else{const ly=T5(base.filter(r=>r.y===2025));cmp={v:A.v/1.12,vol:A.vol/1.11};lab='target'}
+  document.getElementById('d5k').innerHTML=
+   `<div class="kpi" style="--c:${C.teal}"><span>Sales value</span><b>${usd(A.v)}</b>${delta(A.v,cmp.v,lab)}</div>
+    <div class="kpi" style="--c:${C.blue}"><span>Sales volume</span><b>${num(A.vol)} cs</b>${delta(A.vol,cmp.vol,lab)}</div>
+    <div class="kpi" style="--c:${C.red}"><span>Discount</span><b>${usd(A.disc)}</b><em>${pct(A.dp)} of gross</em></div>
+    <div class="kpi" style="--c:${C.amber}"><span>Bill documents</span><b>${num(A.b)}</b><em>unique invoices</em></div>
+    <div class="kpi" style="--c:${C.violet}"><span>Truck avg (unique)</span><b>${usd(A.truck)}</b><em>value per truck-day</em></div>
+    <div class="kpi" style="--c:${C.green}"><span>Drop size</span><b>${A.drop.toFixed(1)} cs</b><em>volume ÷ bills</em></div>
+    <div class="kpi" style="--c:${C.blue}"><span>Trucks × days</span><b>${num(A.td)}</b><em>unique truck-days</em></div>
+    <div class="kpi" style="--c:${C.teal}"><span>Avg. invoice</span><b>${usd(A.v/A.b)}</b><em>per bill</em></div>`;
+  // daily current month vs LY
+  const doms=Array.from({length:23},(_,i)=>i+1);
+  const ser=(fn)=>doms.map(dd=>sum(base.filter(r=>fn(r)&&r.dom===dd),x=>x.v));
+  const cC=ser(r=>isMTD(r)&&r.bu===0),cG=ser(r=>isMTD(r)&&r.bu===1),ly=ser(r=>r.y===2025&&r.m===10);
+  mk('d5daily',{type:'bar',data:{labels:doms,datasets:[{label:'Carton',data:cC,backgroundColor:C.teal,stack:'s',borderRadius:2},{label:'Gallon',data:cG,backgroundColor:C.blue,stack:'s',borderRadius:2},{type:'line',label:'Last year',data:ly,borderColor:'#94a3b8',borderWidth:1.5,pointRadius:0,tension:.3}]},
+    options:{plugins:{legend:{position:'top',align:'end'},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': '+usd(c.raw)}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,ticks:{callback:v=>fmt(v)}}}}});
+  // BU cards
+  document.getElementById('d5bu').innerHTML=BU5.map((b,bi)=>{if(BU!=='all'&&BU!=bi)return'';const r=cur.filter(x=>x.bu===bi),t=T5(r);
+    const c=P==='today'?T5(d5.filter(x=>x.bu===bi&&(R==='all'||x.ri==R)&&x.y===2026&&x.m===10&&x.dom===22)):P==='mtd'?T5(d5.filter(x=>x.bu===bi&&(R==='all'||x.ri==R)&&isLYMTD(x))):{v:t.v/1.12,vol:t.vol/1.11};
+    return`<div class="card"><h5>${b} <small>${pct(t.v/A.v)} of sales</small></h5><div class="mini">
+      <div><span>Sales value</span><b>${usd(t.v)}</b>${delta(t.v,c.v,lab)}</div><div><span>Volume</span><b>${num(t.vol)} cs</b>${delta(t.vol,c.vol,lab)}</div>
+      <div><span>Drop size</span><b>${t.drop.toFixed(1)} cs</b></div><div><span>Truck avg</span><b>${usd(t.truck)}</b></div></div></div>`}).join('');
+  // channel table
+  document.getElementById('d5cmp').textContent='% = actual ÷ '+lab;
+  const cmpRows=P==='today'?base.filter(r=>r.y===2026&&r.m===10&&r.dom===22):P==='mtd'?base.filter(isLYMTD):null;
+  let h='<table><thead><tr><th>Channel</th><th>Share</th><th>BU</th><th>Sales value</th><th>vs '+lab+'</th><th>Truck avg</th><th>Volume</th><th>Drop size</th></tr></thead><tbody>';
+  CH5.forEach(([c,bus],ci)=>{const rs=cur.filter(r=>r.ci===ci);const sh=sum(rs,x=>x.v)/A.v;const bl=bus.filter(b=>BU==='all'||b==BU);
+    bl.forEach((b,k)=>{const t=T5(rs.filter(r=>r.bu===b));const cv=cmpRows?sum(cmpRows.filter(r=>r.ci===ci&&r.bu===b),x=>x.v):t.v/(0.8+((ci*7+b*3)%10)/20);const pp=t.v/(cv||1);
+      h+=`<tr>${k===0?`<td rowspan="${bl.length}"><b>${c}</b></td><td rowspan="${bl.length}">${pct(sh)}</td>`:''}<td><span class="pill" style="background:${b?'rgba(96,165,250,.15)':'rgba(45,212,191,.15)'};color:${b?C.blue:C.teal}">${BU5[b]}</span></td><td>${usd(t.v)}</td><td>${pill(Math.min(pp,1.5))}</td><td>${usd(t.truck)}</td><td>${num(t.vol)} cs</td><td>${t.drop.toFixed(1)} cs</td></tr>`})});
+  document.getElementById('d5ch').innerHTML=h+'</tbody></table>';
+  /* Analytics (always MTD) */
+  const mtd=base.filter(isMTD),lym=base.filter(isLYMTD),M=T5(mtd),L=T5(lym);
+  const wdays=doms.filter(dd=>new Date(Date.UTC(2026,10,dd)).getUTCDay()!==5).length;
+  const target=M.v/1.04/wdays*WD_NOV;const daily=doms.map(dd=>sum(mtd.filter(r=>r.dom===dd),x=>x.v));
+  const last7=sum(daily.slice(-7),v=>v),prev7=sum(daily.slice(-14,-7),v=>v);
+  const regT=REG5.map((r,i)=>sum(d5.filter(x=>isMTD(x)&&x.ri===i&&(BU==='all'||x.bu==BU)),y=>y.v));const topR=regT.indexOf(Math.max(...regT));
+  const chLY=CH5.map(([c],ci)=>({c,a:sum(mtd.filter(r=>r.ci===ci),x=>x.v),b:sum(lym.filter(r=>r.ci===ci),x=>x.v)})).map(o=>({...o,p:o.a/(o.b||1)})).sort((a,b)=>b.p-a.p);
+  const gMix=sum(mtd.filter(r=>r.bu===1),x=>x.v)/M.v;
+  document.getElementById('d5ex').innerHTML=`<div><b>YOY</b><br>Month to date is at <b>${pct(M.v/L.v)}</b> of the same dates last year (${usd(M.v)} vs ${usd(L.v)}).</div>
+    <div><b>TREND</b><br>Last 7 days ${usd(last7)}, ${last7>=prev7?'▲':'▼'} ${pct(Math.abs(last7/prev7-1))} vs the prior 7 days.</div>
+    <div><b>MIX</b><br>${REG5[topR]} leads with ${pct(regT[topR]/sum(regT,v=>v))} of MTD sales · Gallon ${pct(gMix)} / Carton ${pct(1-gMix)}.</div>
+    <div><b>CHANNELS</b><br>Best vs LY: <b>${chLY[0].c}</b> ${pct(chLY[0].p)} · weakest: <b>${chLY[chLY.length-1].c}</b> ${pct(chLY[chLY.length-1].p)}.</div>`;
+  let ca=0,cl=0;const lyd=doms.map(dd=>sum(lym.filter(r=>r.dom===dd),x=>x.v));
+  mk('d5cum',{type:'line',data:{labels:doms,datasets:[{label:'Actual',data:daily.map(v=>ca+=v),borderColor:C.teal,backgroundColor:'rgba(45,212,191,.12)',fill:true,tension:.25,pointRadius:0},{label:'Last year',data:lyd.map(v=>cl+=v),borderColor:'#94a3b8',borderDash:[5,4],pointRadius:0,tension:.25},
+    {label:'Target pace',data:doms.map((dd)=>target/WD_NOV*doms.slice(0,dd).filter(x=>new Date(Date.UTC(2026,10,x)).getUTCDay()!==5).length),borderColor:C.amber,borderWidth:1.2,pointRadius:0}]},
+    options:{plugins:{legend:{position:'top',align:'end'},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': '+usd(c.raw)}}},scales:{y:{ticks:{callback:v=>fmt(v)}},x:{grid:{display:false}}}}});
+  mk('d5bud',{type:'bar',data:{labels:doms,datasets:[{label:'Carton',data:cC,backgroundColor:C.teal,stack:'s'},{label:'Gallon',data:cG,backgroundColor:C.blue,stack:'s'},{type:'line',label:'Daily target',data:doms.map(dd=>new Date(Date.UTC(2026,10,dd)).getUTCDay()===5?null:target/WD_NOV),borderColor:C.amber,borderDash:[5,4],pointRadius:0,spanGaps:false}]},
+    options:{plugins:{legend:{position:'top',align:'end'},tooltip:{callbacks:{label:c=>c.dataset.label+': '+usd(c.raw)}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,ticks:{callback:v=>fmt(v)}}}}});
+  mk('d5cly',{type:'bar',data:{labels:chLY.map(x=>x.c),datasets:[{data:chLY.map(x=>+(x.p*100).toFixed(0)),backgroundColor:chLY.map(x=>x.p>=1?C.green:x.p>=.85?C.amber:C.red),borderRadius:4,barThickness:18}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false},valLabels:{on:true,f:v=>v+'%'}},scales:{x:{ticks:{callback:v=>v+'%'},grace:'12%'},y:{grid:{display:false}}}}});
+  const brR=REG5.map((r,i)=>({r,i,c:sum(d5.filter(x=>isMTD(x)&&x.ri===i&&x.bu===0),y=>y.v),g:sum(d5.filter(x=>isMTD(x)&&x.ri===i&&x.bu===1),y=>y.v)})).sort((a,b)=>(b.c+b.g)-(a.c+a.g));
+  mk('d5br',{type:'bar',data:{labels:brR.map(x=>x.r),datasets:[{label:'Carton',data:brR.map(x=>x.c),backgroundColor:brR.map(x=>R==='all'||R==x.i?C.teal:'#1b3a44'),stack:'s',borderRadius:3},{label:'Gallon',data:brR.map(x=>x.g),backgroundColor:brR.map(x=>R==='all'||R==x.i?C.blue:'#1b2a44'),stack:'s',borderRadius:3}]},
+    options:{indexAxis:'y',plugins:{legend:{position:'top',align:'end'},tooltip:{callbacks:{label:c=>c.dataset.label+': '+usd(c.raw)}}},scales:{x:{stacked:true,ticks:{callback:v=>fmt(v)}},y:{stacked:true,grid:{display:false}}}}});
+  const totM=sum(brR,x=>x.c+x.g);
+  document.getElementById('d5bs').innerHTML=`<table><thead><tr><th>Branch</th><th>MTD value</th><th>vs pace</th><th></th><th>Share</th><th>Volume</th><th>Bills</th><th>Truck avg</th><th>Drop size</th></tr></thead><tbody>${
+    brR.map(x=>{const t=T5(d5.filter(r=>isMTD(r)&&r.ri===x.i&&(BU==='all'||r.bu==BU)));const pace=(0.92+((x.i*13)%25)/100);return`<tr class="${R==='all'||R==x.i?'':'dim'}"><td>${x.r}</td><td>${usd(t.v)}</td><td>${pill(pace)}</td><td>${barCell(pace)}</td><td>${pct((x.c+x.g)/totM)}</td><td>${fmt(t.vol)} cs</td><td>${num(t.b)}</td><td>${usd(t.truck)}</td><td>${t.drop.toFixed(1)} cs</td></tr>`}).join('')}</tbody></table>`;
+  /* Trends */
+  mk('d5stk',{type:'bar',data:{labels:doms,datasets:REG5.map((r,i)=>({label:r,data:doms.map(dd=>sum(d5.filter(x=>isMTD(x)&&x.dom===dd&&x.ri===i&&(BU==='all'||x.bu==BU)),y=>y.v)),backgroundColor:PAL[i],stack:'s'}))},
+    options:{plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': '+usd(c.raw)}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,ticks:{callback:v=>fmt(v)}}}}});
+  const mxD=Math.max(...daily);let cal='<div class="cal">'+['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<span class="hml">${d}</span>`).join('');
+  const off=new Date(Date.UTC(2026,10,1)).getUTCDay();for(let i=0;i<off;i++)cal+='<i class="e"></i>';
+  for(let dd=1;dd<=30;dd++){const v=dd<=23?daily[dd-1]:null;const fri=new Date(Date.UTC(2026,10,dd)).getUTCDay()===5;
+    cal+=v===null?`<i class="e"><s>${dd}</s></i>`:fri?`<i class="off"><s>${dd}</s>off</i>`:`<i style="background:rgba(45,212,191,${(0.15+v/mxD*.85).toFixed(2)})"><s>${dd}</s>${fmt(v)}</i>`}
+  document.getElementById('d5cal').innerHTML=cal+'</div>';
+  const wdn=['Sun','Mon','Tue','Wed','Thu','Sat'],wdi=[0,1,2,3,4,6];
+  const wdv=wdi.map(w=>{const ds=doms.filter(dd=>new Date(Date.UTC(2026,10,dd)).getUTCDay()===w&&dd<23);return sum(ds,dd=>daily[dd-1])/(ds.length||1)});
+  mk('d5wd',{type:'bar',data:{labels:wdn,datasets:[{data:wdv,backgroundColor:wdv.map(v=>v===Math.max(...wdv)?C.amber:C.teal),borderRadius:5}]},options:{plugins:{legend:{display:false},valLabels:{on:true,f:fmt}},scales:{y:{display:false,grace:'15%'},x:{grid:{display:false}}}}});
+  const chs=CH5.map(([c],ci)=>({c,a:sum(mtd.filter(r=>r.ci===ci),x=>x.v),b:sum(lym.filter(r=>r.ci===ci),x=>x.v)}));const ta=sum(chs,x=>x.a);
+  mk('d5bub',{type:'bubble',data:{datasets:chs.map((x,i)=>({label:x.c,data:[{x:+(x.a/ta*100).toFixed(1),y:+((x.a/x.b-1)*100).toFixed(0),r:6+Math.sqrt(x.a/ta)*40}],backgroundColor:PAL[i]+'bb',borderColor:PAL[i]}))},
+    options:{plugins:{legend:{position:'right',labels:{font:{size:10}}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: share ${c.raw.x}% · growth ${c.raw.y}%`}}},scales:{x:{title:{display:true,text:'Share of MTD sales %'}},y:{title:{display:true,text:'Growth vs LY %'}}}}});
+};
+
+/* =============== D6: FG Stock Sufficiency (fake data) =============== */
+const REG6=['Riyadh','Dammam','Qassim','Al Ahsa','Jeddah'];const REG6W=[.42,.2,.13,.1,.15];
+const SKU6=[['5G','5 Gallon Bottle'],['Sparkling','Sparkling 330ml ×24'],['Ice Cube','Ice Cube 2kg'],['Tania','Tania 200ml ×20'],['Tania','Tania 200ml ×24 Ctn'],['Tania','Tania 330ml ×40'],['Tania','Tania 600ml ×30'],['Tania','Tania 1.5L ×6'],['Mai','Mai 330ml ×40'],['Mai','Mai 600ml ×24'],['Old','Classic 330ml ×48'],['Old','Classic 1.5L ×12']];
+const CAT6=[...new Set(SKU6.map(s=>s[0]))];const ADSB=[5200,40,4,2400,900,1800,1500,600,500,350,90,60];
+const d6=[];REG6.forEach((r,ri)=>SKU6.forEach(([cat,n],si)=>{const ads=ADSB[si]*REG6W[ri]*(0.6+rnd()*.8)*(si===2&&ri>0?0:1);
+  const dosT=[0.6,1.5,3,5,9,15,25,35,50,70][Math.floor(rnd()*10)];const stock=ads?Math.round(ads*(dosT+1)):Math.round(rnd()*40);
+  const unr=Math.round(stock*.78),tr=Math.round(stock*.15);d6.push({ri,si,cat,n,ads,stock,unr,tr,qc:stock-unr-tr})}));
+const dosOf=(s,a)=>a>0?Math.floor((s-a)/a):null;
+const band=d=>d===null?['—','#2a3550']:d<2?['Red','#ef4444']:d<4?['Orange','#f97316']:d<6?['Yellow','#eab308']:d<=30?['Green','#22c55e']:d<=45?['Cyan','#06b6d4']:d<=60?['Blue','#3b82f6']:['Grey','#64748b'];
+const urg=d=>d===null?null:d<2?'Critical':d<4?'High':d<7?'Watch':null;
+const s6r=document.getElementById('d6Reg'),s6c=document.getElementById('d6Cat'),s6u=document.getElementById('d6Urg');
+s6r.innerHTML='<option value="all">All regions</option>'+REG6.map((r,i)=>`<option value="${i}">${r}</option>`).join('');
+s6c.innerHTML='<option value="all">All categories</option>'+CAT6.map(c=>`<option>${c}</option>`).join('');
+[s6r,s6c,s6u].forEach(s=>s.onchange=()=>render.d6());
+document.getElementById('d6leg').innerHTML=[['< 2','#ef4444'],['2–4','#f97316'],['4–6','#eab308'],['6–30','#22c55e'],['30–45','#06b6d4'],['45–60','#3b82f6'],['> 60','#64748b']].map(([t,c])=>`<span><i style="background:${c}"></i>${t} days</span>`).join('');
+render.d6=()=>{
+  const R=s6r.value,K=s6c.value,U=s6u.value;
+  const regs=REG6.map((r,i)=>i).filter(i=>R==='all'||R==i),skus=SKU6.map((s,i)=>i).filter(i=>K==='all'||SKU6[i][0]===K);
+  const cell=(ri,si)=>d6.find(x=>x.ri===ri&&x.si===si);
+  const piv=(id,f,fmtf,color)=>{let h=`<table class="piv"><thead><tr><th>Region</th>${skus.map(si=>`<th><small>${SKU6[si][0]}</small><br>${SKU6[si][1].replace(/^(Tania|Mai|Classic) /,'')}</th>`).join('')}${color?'':'<th>Total</th>'}</tr></thead><tbody>`;
+    regs.forEach(ri=>{h+=`<tr><td><b>${REG6[ri]}</b></td>`+skus.map(si=>{const c=cell(ri,si);const v=f(c);if(color){const b=band(v);return`<td style="background:${b[1]}${v===null?'':'cc'};color:${v===null?'#8a9bbd':'#06101f'};font-weight:700;text-align:center">${v===null?'·':v}</td>`}return`<td>${fmtf(v)}</td>`}).join('')+(color?'':`<td><b>${fmtf(sum(skus,si=>f(cell(ri,si))))}</b></td>`)+'</tr>'});
+    if(!color)h+=`</tbody><tfoot><tr><td>Grand total</td>${skus.map(si=>`<td>${fmtf(sum(regs,ri=>f(cell(ri,si))))}</td>`).join('')}<td>${fmtf(sum(regs,ri=>sum(skus,si=>f(cell(ri,si)))))}</td></tr></tfoot>`;
+    document.getElementById(id).innerHTML=h+'</table>'};
+  piv('d6stock',c=>c.stock,v=>num(v));piv('d6ads',c=>c.ads,v=>v?v.toFixed(1):'0');piv('d6dos',c=>dosOf(c.stock,c.ads),v=>v,true);
+  /* P2 */
+  const scope=d6.filter(x=>regs.includes(x.ri)&&skus.includes(x.si));
+  const recs=scope.map(x=>{const d=dosOf(x.stock,x.ads);return{...x,d,u:urg(d),rep:Math.max(0,Math.round(x.ads*14-x.stock))}}).filter(x=>x.u&&(U==='all'||x.u===U)).sort((a,b)=>a.d-b.d||b.rep-a.rep);
+  const today=new Date(Date.UTC(2026,10,23));
+  document.getElementById('d6k').innerHTML=`<div class="kpi" style="--c:${C.blue}"><span>SKUs in scope</span><b>${skus.length*regs.length}</b><em>region × SKU lines</em></div>
+    <div class="kpi" style="--c:${C.teal}"><span>Total stock (as at date)</span><b>${fmt(sum(scope,x=>x.stock))}</b><em>selling units</em></div>
+    <div class="kpi" style="--c:${C.red}"><span>Critical (DOS &lt; 2)</span><b>${recs.filter(x=>x.u==='Critical').length}</b><em class="dn">replenish now</em></div>
+    <div class="kpi" style="--c:${C.amber}"><span>Replenishment to 14 days</span><b>${fmt(sum(recs,x=>x.rep))}</b><em>units needed</em></div>
+    <div class="kpi" style="--c:${C.violet}"><span>Locations under 7 days</span><b>${new Set(recs.map(x=>x.ri)).size}</b><em>of ${regs.length} regions</em></div>`;
+  const up=u=>`<span class="pill ${u==='Critical'?'pr':u==='High'?'pa':'pg'}" style="${u==='Watch'?'background:rgba(234,179,8,.14);color:#eab308':''}">${u}</span>`;
+  document.getElementById('d6rec').innerHTML=recs.length?`<table><thead><tr><th>Urgency</th><th>Region</th><th>Category</th><th>SKU</th><th>Current stock</th><th>Avg daily sales</th><th>DOS</th><th>Expected stock-out</th><th>Suggested replenishment</th></tr></thead><tbody>${
+    recs.map(x=>{const so=new Date(today.getTime()+Math.max(0,x.d)*864e5);return`<tr><td>${up(x.u)}</td><td>${REG6[x.ri]}</td><td>${x.cat}</td><td>${x.n}</td><td>${num(x.stock)}</td><td>${x.ads.toFixed(1)}</td><td><b style="color:${band(x.d)[1]}">${x.d}</b></td><td>${so.getUTCDate()} ${MN[so.getUTCMonth()]}</td><td><b>${num(x.rep)}</b></td></tr>`}).join('')}</tbody></table>`:'<p style="color:var(--muted);padding:20px">No lines under 7 days of cover for this filter. ✅</p>';
+  /* P3 */
+  const cats=CAT6.filter(c=>K==='all'||c===K);
+  const cs=cats.map(c=>{const r=scope.filter(x=>x.cat===c);const st=sum(r,x=>x.stock),a=sum(r,x=>x.ads);return{c,st,a,d:dosOf(st,a)}});
+  mk('d6cdos',{type:'bar',data:{labels:cs.map(x=>x.c),datasets:[{data:cs.map(x=>x.d??0),backgroundColor:cs.map(x=>band(x.d)[1]),borderRadius:5}]},options:{plugins:{legend:{display:false},valLabels:{on:true,f:v=>v+' d'}},scales:{y:{title:{display:true,text:'Days of cover'},grace:'12%'},x:{grid:{display:false}}}}});
+  mk('d6need',{type:'bar',data:{labels:cs.map(x=>x.c),datasets:[{label:'Current stock',data:cs.map(x=>x.st),backgroundColor:C.teal,borderRadius:4},{label:'14-day need',data:cs.map(x=>x.a*14),backgroundColor:'rgba(248,113,113,.65)',borderRadius:4}]},
+    options:{plugins:{legend:{position:'top',align:'end'},tooltip:{callbacks:{label:c=>c.dataset.label+': '+num(c.raw)}}},scales:{y:{type:'logarithmic',ticks:{callback:v=>fmt(v)}},x:{grid:{display:false}}}}});
+  document.getElementById('d6cr').innerHTML=`<table class="piv"><thead><tr><th>Region</th>${cats.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${regs.map(ri=>`<tr><td><b>${REG6[ri]}</b></td>${cats.map(c=>{const r=d6.filter(x=>x.ri===ri&&x.cat===c);const d=dosOf(sum(r,x=>x.stock),sum(r,x=>x.ads));const b=band(d);return`<td style="background:${b[1]}${d===null?'':'cc'};color:${d===null?'#8a9bbd':'#06101f'};font-weight:700;text-align:center">${d===null?'·':d}</td>`}).join('')}</tr>`).join('')}</tbody></table>`;
+};
+
+const shown=new Set();
+function showProj(id){document.querySelectorAll('#ptabs button').forEach(b=>b.classList.toggle('on',b.dataset.proj===id));
+  document.querySelectorAll('.proj').forEach(p=>p.classList.toggle('on',p.id===id));
+  const d=document.querySelector('#'+id+' .dash').id;render[d]();}
+document.getElementById('ptabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)showProj(b.dataset.proj)});
+showProj('pr5');
+</script>
+</body>
+</html>
